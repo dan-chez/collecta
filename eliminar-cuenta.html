@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eliminación de cuenta — Collecta</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #080D16;
+      color: #ffffff;
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.7;
+      padding: 0 0 80px;
+    }
+
+    .hero {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .hero .meta {
+      color: rgba(255,255,255,0.40);
+      font-size: 0.85rem;
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+      margin-top: 6px;
+      background: #0F1622;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 8px;
+      padding: 4px;
+    }
+
+    .lang-toggle button {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.40);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 6px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: #D4A843;
+      color: #080D16;
+    }
+
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .section:last-child { border-bottom: none; }
+
+    .section-number {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #D4A843;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: rgba(255,255,255,0.70);
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    ul li {
+      color: rgba(255,255,255,0.70);
+      font-size: 0.95rem;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #D4A843;
+    }
+
+    strong { color: #ffffff; font-weight: 600; }
+
+    a { color: #D4A843; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: #0F1622;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+
+    .step-number {
+      background: #D4A843;
+      color: #080D16;
+      font-weight: 800;
+      font-size: 0.85rem;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-text {
+      color: rgba(255,255,255,0.70);
+      font-size: 0.95rem;
+    }
+
+    .step-text strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .warning-box {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-top: 16px;
+    }
+
+    .warning-box p {
+      color: rgba(255,255,255,0.70);
+      margin: 0;
+    }
+
+    .warning-box strong {
+      color: #EF4444;
+    }
+
+    [lang-content="en"] { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div>
+      <p class="meta" lang-content="es">Collecta · Gestión de cuenta</p>
+      <p class="meta" lang-content="en">Collecta · Account management</p>
+      <h1 lang-content="es">Eliminación de cuenta</h1>
+      <h1 lang-content="en">Account Deletion</h1>
+      <p class="meta" lang-content="es">Actualizado: 17 de mayo de 2026</p>
+      <p class="meta" lang-content="en">Updated: May 17, 2026</p>
+    </div>
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('es')">ES</button>
+      <button onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- Sección 1 -->
+    <div class="section">
+      <p class="section-number" lang-content="es">01 — Desde la app</p>
+      <p class="section-number" lang-content="en">01 — From the app</p>
+      <h2 lang-content="es">Cómo eliminar tu cuenta</h2>
+      <h2 lang-content="en">How to delete your account</h2>
+      <p lang-content="es">Puedes eliminar tu cuenta directamente desde la aplicación en cualquier momento. El proceso es inmediato y permanente.</p>
+      <p lang-content="en">You can delete your account directly from the app at any time. The process is immediate and permanent.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-text">
+            <strong lang-content="es">Abre la app y ve a tu perfil</strong>
+            <strong lang-content="en">Open the app and go to your profile</strong>
+            <span lang-content="es">Toca el ícono de perfil en la barra de navegación inferior.</span>
+            <span lang-content="en">Tap the profile icon in the bottom navigation bar.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-text">
+            <strong lang-content="es">Abre el menú de configuración</strong>
+            <strong lang-content="en">Open the settings menu</strong>
+            <span lang-content="es">Toca el ícono de ajustes en la esquina superior derecha de tu perfil.</span>
+            <span lang-content="en">Tap the settings icon in the top right corner of your profile.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-text">
+            <strong lang-content="es">Selecciona "Eliminar cuenta"</strong>
+            <strong lang-content="en">Select "Delete account"</strong>
+            <span lang-content="es">Desplázate hasta el final de la configuración y toca "Eliminar cuenta".</span>
+            <span lang-content="en">Scroll to the bottom of settings and tap "Delete account".</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-text">
+            <strong lang-content="es">Confirma la eliminación</strong>
+            <strong lang-content="en">Confirm deletion</strong>
+            <span lang-content="es">Confirma la acción en el diálogo de confirmación. Tu cuenta se eliminará de forma inmediata.</span>
+            <span lang-content="en">Confirm the action in the confirmation dialog. Your account will be deleted immediately.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <p lang-content="es"><strong>Esta acción es irreversible.</strong> Una vez eliminada tu cuenta no podrás recuperar tus colecciones, progreso ni ningún dato asociado.</p>
+        <p lang-content="en"><strong>This action is irreversible.</strong> Once your account is deleted, you will not be able to recover your collections, progress, or any associated data.</p>
+      </div>
+    </div>
+
+    <!-- Sección 2 -->
+    <div class="section">
+      <p class="section-number" lang-content="es">02 — Qué se elimina</p>
+      <p class="section-number" lang-content="en">02 — What gets deleted</p>
+      <h2 lang-content="es">Datos que se borran</h2>
+      <h2 lang-content="en">Data that is deleted</h2>
+      <p lang-content="es">Al eliminar tu cuenta se borran de forma permanente:</p>
+      <p lang-content="en">When you delete your account, the following is permanently removed:</p>
+      <ul>
+        <li lang-content="es">Tu perfil (nombre de usuario, foto, biografía)</li>
+        <li lang-content="en">Your profile (username, photo, bio)</li>
+        <li lang-content="es">Todas tus colecciones y el progreso registrado</li>
+        <li lang-content="en">All your collections and recorded progress</li>
+        <li lang-content="es">Tu wishlist y lista de ítems para cambio</li>
+        <li lang-content="en">Your wishlist and trade items list</li>
+        <li lang-content="es">Tu cuenta de autenticación (correo y contraseña)</li>
+        <li lang-content="en">Your authentication account (email and password)</li>
+      </ul>
+    </div>
+
+    <!-- Sección 3 -->
+    <div class="section">
+      <p class="section-number" lang-content="es">03 — Plazo</p>
+      <p class="section-number" lang-content="en">03 — Timeline</p>
+      <h2 lang-content="es">Tiempo de retención</h2>
+      <h2 lang-content="en">Retention period</h2>
+      <p lang-content="es">La eliminación es inmediata. Tus datos se borran de nuestros servidores en el momento en que confirmas la acción. No existe un período de gracia ni posibilidad de recuperación.</p>
+      <p lang-content="en">Deletion is immediate. Your data is removed from our servers the moment you confirm the action. There is no grace period or recovery option.</p>
+    </div>
+
+    <!-- Sección 4 -->
+    <div class="section">
+      <p class="section-number" lang-content="es">04 — Contacto</p>
+      <p class="section-number" lang-content="en">04 — Contact</p>
+      <h2 lang-content="es">¿Necesitas ayuda?</h2>
+      <h2 lang-content="en">Need help?</h2>
+      <p lang-content="es">Si tienes problemas para eliminar tu cuenta desde la app, escríbenos a <a href="mailto:danchezapps@gmail.com">danchezapps@gmail.com</a> y procesaremos tu solicitud manualmente en un plazo máximo de 30 días.</p>
+      <p lang-content="en">If you have trouble deleting your account from the app, write to us at <a href="mailto:danchezapps@gmail.com">danchezapps@gmail.com</a> and we will process your request manually within 30 days.</p>
+    </div>
+
+  </div>
+
+  <script>
+    function setLang(lang) {
+      document.querySelectorAll('[lang-content]').forEach(el => {
+        el.style.display = el.getAttribute('lang-content') === lang ? '' : 'none';
+      });
+      document.querySelectorAll('.lang-toggle button').forEach((btn, i) => {
+        btn.classList.toggle('active', (lang === 'es' && i === 0) || (lang === 'en' && i === 1));
+      });
+    }
+    setLang('es');
+  </script>
+
+</body>
+</html>
