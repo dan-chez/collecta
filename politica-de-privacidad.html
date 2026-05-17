@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidad — Collecta</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #080D16;
+      color: #ffffff;
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.7;
+      padding: 0 0 80px;
+    }
+
+    .hero {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .hero .meta {
+      color: rgba(255,255,255,0.40);
+      font-size: 0.85rem;
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+      margin-top: 6px;
+      background: #0F1622;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 8px;
+      padding: 4px;
+    }
+
+    .lang-toggle button {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.40);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 6px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: #D4A843;
+      color: #080D16;
+    }
+
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .section:last-child { border-bottom: none; }
+
+    .section-number {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #D4A843;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: rgba(255,255,255,0.70);
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    ul li {
+      color: rgba(255,255,255,0.70);
+      font-size: 0.95rem;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #D4A843;
+    }
+
+    strong { color: #ffffff; font-weight: 600; }
+
+    a { color: #D4A843; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .providers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .provider-card {
+      background: #0F1622;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    .provider-name {
+      font-weight: 600;
+      color: #ffffff;
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+    }
+
+    .provider-desc {
+      color: rgba(255,255,255,0.40);
+      font-size: 0.8rem;
+    }
+
+    .contact-box {
+      background: #0F1622;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 16px;
+    }
+
+    .contact-box a {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .right-item {
+      background: #0F1622;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 0.85rem;
+    }
+
+    .right-item strong {
+      display: block;
+      color: #D4A843;
+      margin-bottom: 2px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .right-item span {
+      color: rgba(255,255,255,0.60);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── ESPAÑOL ─────────────────────────────────────────────────────────── -->
+  <div id="content-es">
+    <div class="hero">
+      <div>
+        <h1>Política de Privacidad</h1>
+        <p class="meta">Última actualización: 13 de mayo de 2025 · Versión 1.0</p>
+      </div>
+      <div class="lang-toggle">
+        <button id="btn-es-es" class="active" onclick="setLang('es')">ES</button>
+        <button id="btn-en-es" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="section">
+        <div class="section-number">Sección 01</div>
+        <h2>Responsable del tratamiento</h2>
+        <p>El responsable del tratamiento de tus datos personales es el equipo de <strong>Collecta</strong>, contactable en <a href="mailto:danchezapps@gmail.com">danchezapps@gmail.com</a>.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Sección 02</div>
+        <h2>Datos que recopilamos</h2>
+        <ul>
+          <li><strong>Datos de cuenta:</strong> nombre de usuario, correo electrónico y URL de foto de perfil obtenida del inicio de sesión con Google; Collecta no almacena la imagen directamente.</li>
+          <li><strong>Datos de colección:</strong> colecciones que sigues, progreso, ítems marcados y wishlist.</li>
+          <li><strong>Datos de uso:</strong> eventos de interacción dentro de la App (vía Firebase Analytics).</li>
+          <li><strong>Datos de error:</strong> registros de fallos técnicos (vía Firebase Crashlytics).</li>
+          <li><strong>Datos de publicidad:</strong> identificadores de dispositivo usados por Google AdMob (solo usuarios gratuitos).</li>
+          <li><strong>Datos de pago:</strong> gestionados exclusivamente por Google Play o App Store. Collecta no almacena datos de tarjetas.</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">Sección 03</div>
+        <h2>Finalidad del tratamiento</h2>
+        <ul>
+          <li>Crear y gestionar tu cuenta de usuario.</li>
+          <li>Almacenar y sincronizar el progreso de tus colecciones.</li>
+          <li>Mostrar tu perfil público a otros usuarios (si lo habilitas).</li>
+          <li>Mejorar la App mediante análisis de uso y corrección de errores.</li>
+          <li>Mostrarte publicidad relevante (solo usuarios gratuitos).</li>
+          <li>Cumplir con obligaciones legales.</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">Sección 04</div>
+        <h2>Base legal del tratamiento</h2>
+        <ul>
+          <li>Tu consentimiento al aceptar estos términos al crear una cuenta.</li>
+          <li>La ejecución del contrato de servicio (prestación de la App).</li>
+          <li>El cumplimiento de obligaciones legales aplicables en Colombia.</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">Sección 05</div>
+        <h2>Proveedores de servicios</h2>
+        <p>Compartimos datos únicamente con los siguientes proveedores:</p>
+        <div class="providers-grid">
+          <div class="provider-card"><div class="provider-name">Supabase</div><div class="provider-desc">Base de datos y autenticación</div></div>
+          <div class="provider-card"><div class="provider-name">Firebase</div><div class="provider-desc">Analytics y Crashlytics</div></div>
+          <div class="provider-card"><div class="provider-name">Google AdMob</div><div class="provider-desc">Publicidad (usuarios gratuitos)</div></div>
+          <div class="provider-card"><div class="provider-name">RevenueCat</div><div class="provider-desc">Gestión de compras in-app</div></div>
+        </div>
+        <p style="margin-top:16px">No vendemos tus datos personales a terceros.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Sección 06</div>
+        <h2>Transferencias internacionales</h2>
+        <p>Algunos de nuestros proveedores (Supabase, Google, RevenueCat) procesan datos fuera de Colombia. Estas transferencias se realizan con proveedores que cuentan con niveles de protección adecuados conforme a la legislación colombiana.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Sección 07</div>
+        <h2>Retención de datos</h2>
+        <p>Conservamos tus datos mientras tu cuenta esté activa. Si eliminas tu cuenta, borraremos tus datos personales en un plazo de 30 días, salvo obligación legal de conservarlos por un período mayor.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Sección 08</div>
+        <h2>Tus derechos (Ley 1581 de 2012)</h2>
+        <div class="rights-grid">
+          <div class="right-item"><strong>Conocer</strong><span>Acceder a los datos que tenemos sobre ti</span></div>
+          <div class="right-item"><strong>Actualizar</strong><span>Rectificar información incorrecta</span></div>
+          <div class="right-item"><strong>Suprimir</strong><span>Solicitar eliminación de tus datos</span></div>
+          <div class="right-item"><strong>Revocar</strong><span>Retirar el consentimiento otorgado</span></div>
+          <div class="right-item"><strong>Quejas</strong><span>Ante la SIC si lo consideras necesario</span></div>
+        </div>
+        <p style="margin-top:16px">Para ejercer estos derechos, escríbenos a <a href="mailto:danchezapps@gmail.com">danchezapps@gmail.com</a>. Responderemos en un plazo de 10 días hábiles.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Sección 09</div>
+        <h2>Seguridad</h2>
+        <p>Implementamos medidas técnicas y organizativas para proteger tus datos, incluyendo cifrado en tránsito (HTTPS/TLS), autenticación segura y políticas de acceso mínimo. En caso de una brecha de seguridad que afecte tus datos, te notificaremos según lo exige la ley.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Sección 10</div>
+        <h2>Privacidad de menores</h2>
+        <p>La App no está dirigida a menores de 13 años. Si tienes conocimiento de que un menor nos ha proporcionado datos sin consentimiento parental, contáctanos para eliminarlos.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Sección 11</div>
+        <h2>Cookies y tecnologías similares</h2>
+        <p>La App móvil no usa cookies de navegador. Los SDKs de terceros (Firebase, AdMob) pueden usar identificadores de dispositivo con fines analíticos y publicitarios. Puedes limitar el seguimiento desde la configuración de privacidad de tu dispositivo.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Sección 12</div>
+        <h2>Cambios a esta política</h2>
+        <p>Cuando actualicemos esta política, modificaremos la fecha de "Última actualización". Para cambios significativos, notificaremos a los usuarios dentro de la App.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Sección 13</div>
+        <h2>Contacto</h2>
+        <p>Para cualquier consulta sobre privacidad:</p>
+        <div class="contact-box">
+          <a href="mailto:danchezapps@gmail.com">danchezapps@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── ENGLISH ───────────────────────────────────────────────────────────── -->
+  <div id="content-en" hidden>
+    <div class="hero">
+      <div>
+        <h1>Privacy Policy</h1>
+        <p class="meta">Last updated: May 13, 2025 · Version 1.0</p>
+      </div>
+      <div class="lang-toggle">
+        <button id="btn-es-en" onclick="setLang('es')">ES</button>
+        <button id="btn-en-en" class="active" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="section">
+        <div class="section-number">Section 01</div>
+        <h2>Data Controller</h2>
+        <p>The data controller responsible for your personal data is the <strong>Collecta</strong> team, reachable at <a href="mailto:danchezapps@gmail.com">danchezapps@gmail.com</a>.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Section 02</div>
+        <h2>Data We Collect</h2>
+        <ul>
+          <li><strong>Account data:</strong> username, email address, and profile photo URL obtained from Google Sign-In; Collecta does not store the image directly.</li>
+          <li><strong>Collection data:</strong> collections you follow, progress, marked items, and wishlist.</li>
+          <li><strong>Usage data:</strong> in-app interaction events (via Firebase Analytics).</li>
+          <li><strong>Error data:</strong> technical crash logs (via Firebase Crashlytics).</li>
+          <li><strong>Advertising data:</strong> device identifiers used by Google AdMob (free users only).</li>
+          <li><strong>Payment data:</strong> managed exclusively by Google Play or App Store. Collecta does not store card data.</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">Section 03</div>
+        <h2>Purpose of Processing</h2>
+        <ul>
+          <li>Create and manage your user account.</li>
+          <li>Store and sync your collection progress.</li>
+          <li>Display your public profile to other users (if enabled).</li>
+          <li>Improve the App through usage analytics and bug fixing.</li>
+          <li>Show you relevant ads (free users only).</li>
+          <li>Comply with legal obligations.</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">Section 04</div>
+        <h2>Legal Basis for Processing</h2>
+        <ul>
+          <li>Your consent when accepting these terms upon account creation.</li>
+          <li>Performance of the service contract (providing the App).</li>
+          <li>Compliance with applicable legal obligations in Colombia.</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-number">Section 05</div>
+        <h2>Service Providers</h2>
+        <p>We share data only with the following providers:</p>
+        <div class="providers-grid">
+          <div class="provider-card"><div class="provider-name">Supabase</div><div class="provider-desc">Database and authentication</div></div>
+          <div class="provider-card"><div class="provider-name">Firebase</div><div class="provider-desc">Analytics and Crashlytics</div></div>
+          <div class="provider-card"><div class="provider-name">Google AdMob</div><div class="provider-desc">Advertising (free users)</div></div>
+          <div class="provider-card"><div class="provider-name">RevenueCat</div><div class="provider-desc">In-app purchase management</div></div>
+        </div>
+        <p style="margin-top:16px">We do not sell your personal data to third parties.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Section 06</div>
+        <h2>International Transfers</h2>
+        <p>Some of our providers (Supabase, Google, RevenueCat) process data outside Colombia. These transfers are carried out with providers that maintain adequate protection levels in accordance with Colombian legislation.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Section 07</div>
+        <h2>Data Retention</h2>
+        <p>We retain your data while your account is active. If you delete your account, we will erase your personal data within 30 days, unless a legal obligation requires us to retain it longer.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Section 08</div>
+        <h2>Your Rights (Law 1581 of 2012)</h2>
+        <div class="rights-grid">
+          <div class="right-item"><strong>Access</strong><span>View the data we hold about you</span></div>
+          <div class="right-item"><strong>Rectify</strong><span>Correct inaccurate information</span></div>
+          <div class="right-item"><strong>Erase</strong><span>Request deletion of your data</span></div>
+          <div class="right-item"><strong>Withdraw</strong><span>Revoke the consent you provided</span></div>
+          <div class="right-item"><strong>Complain</strong><span>To the SIC if you deem it necessary</span></div>
+        </div>
+        <p style="margin-top:16px">To exercise these rights, contact us at <a href="mailto:danchezapps@gmail.com">danchezapps@gmail.com</a>. We will respond within 10 business days.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Section 09</div>
+        <h2>Security</h2>
+        <p>We implement technical and organizational measures to protect your data, including encryption in transit (HTTPS/TLS), secure authentication, and least-privilege access policies. In the event of a security breach affecting your data, we will notify you as required by law.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Section 10</div>
+        <h2>Children's Privacy</h2>
+        <p>The App is not directed at children under 13. If you become aware that a minor has provided us with data without parental consent, please contact us so we can delete it.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Section 11</div>
+        <h2>Cookies and Similar Technologies</h2>
+        <p>The mobile App does not use browser cookies. Third-party SDKs (Firebase, AdMob) may use device identifiers for analytics and advertising purposes. You can limit ad tracking through your device's privacy settings.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Section 12</div>
+        <h2>Changes to This Policy</h2>
+        <p>When we update this policy, we will change the "Last updated" date. For significant changes, we will notify users within the App.</p>
+      </div>
+      <div class="section">
+        <div class="section-number">Section 13</div>
+        <h2>Contact</h2>
+        <p>For any privacy-related inquiries:</p>
+        <div class="contact-box">
+          <a href="mailto:danchezapps@gmail.com">danchezapps@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function setLang(lang) {
+      document.getElementById('content-es').hidden = lang !== 'es';
+      document.getElementById('content-en').hidden = lang !== 'en';
+      ['es', 'en'].forEach(function(l) {
+        var btnEs = document.getElementById('btn-' + l + '-es');
+        var btnEn = document.getElementById('btn-' + l + '-en');
+        if (btnEs) btnEs.classList.toggle('active', l === lang);
+        if (btnEn) btnEn.classList.toggle('active', l === lang);
+      });
+      localStorage.setItem('collecta-legal-lang', lang);
+    }
+    var saved = localStorage.getItem('collecta-legal-lang');
+    if (saved === 'en') setLang('en');
+  </script>
+
+</body>
+</html>
