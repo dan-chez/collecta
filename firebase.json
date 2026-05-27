@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      ".firebaserc",
+      ".git",
+      ".gitignore"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
+  }
+}
