@@ -143,6 +143,17 @@
       font-weight: 600;
       font-size: 1rem;
     }
+
+    @media (max-width: 480px) {
+      .hero {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .lang-toggle {
+        align-self: flex-end;
+      }
+    }
   </style>
 </head>
 <body>
@@ -152,7 +163,7 @@
     <div class="hero">
       <div>
         <h1>Términos y Condiciones</h1>
-        <p class="meta">Última actualización: 13 de mayo de 2026 · Versión 1.0</p>
+        <p class="meta">Última actualización: 1 de junio de 2026 · Versión 1.2</p>
       </div>
       <div class="lang-toggle">
         <button id="btn-es-es" class="active" onclick="setLang('es')">ES</button>
@@ -169,7 +180,7 @@
       <div class="section">
         <div class="section-number">Artículo 02</div>
         <h2>Descripción del servicio</h2>
-        <p>Collecta es una aplicación que permite a los usuarios registrar, organizar y compartir sus colecciones de figuras, álbumes de stickers y otros artículos coleccionables. La App facilita el seguimiento del progreso de cada colección y la conexión entre coleccionistas para intercambios.</p>
+        <p>Collecta es una aplicación que permite a los usuarios registrar, organizar y hacer seguimiento al progreso de sus colecciones. La App permite a los usuarios compartir públicamente únicamente los contadores y datos numéricos de sus piezas repetidas o faltantes basados en el catálogo de la App, con el fin de facilitar el contacto para intercambios.</p>
         <p>Collecta <strong>no compra, vende ni intermedia</strong> ningún artículo coleccionable. Cualquier intercambio o transacción entre usuarios es de exclusiva responsabilidad de las partes involucradas.</p>
       </div>
       <div class="section">
@@ -186,9 +197,9 @@
       </div>
       <div class="section">
         <div class="section-number">Artículo 04</div>
-        <h2>Contenido generado por el usuario</h2>
-        <p>Al subir contenido a la App (fotos de perfil, imágenes de colecciones u otro material), declaras que tienes los derechos necesarios sobre dicho contenido y otorgas a Collecta una licencia no exclusiva, gratuita y mundial para mostrarlo dentro de la App con el fin de prestar el servicio.</p>
-        <p>Collecta se reserva el derecho de eliminar contenido que viole estos Términos, derechos de terceros o la legislación aplicable.</p>
+        <h2>Contenido y datos del usuario</h2>
+        <p>El contenido visual y el catálogo de colecciones son propiedad de Collecta o de sus respectivos titulares. El usuario no puede cargar texto libre ni imágenes personalizadas que sean visibles para otros miembros de la comunidad. Los datos ingresados por el usuario (como listas de verificación y contadores de piezas) se procesan con el único fin de prestar el servicio técnico de respaldo y visualización.</p>
+        <p style="margin-top:16px"><strong>Marcas de terceros:</strong> Los nombres de colecciones, marcas comerciales, logotipos e imágenes de referencia de los artículos coleccionables que aparecen en el catálogo de Collecta son propiedad de sus respectivos dueños. Su inclusión en la App se realiza exclusivamente con fines informativos y de referencia para los usuarios, sin que esto implique patrocinio, respaldo o asociación oficial entre Collecta y dichas marcas.</p>
       </div>
       <div class="section">
         <div class="section-number">Artículo 05</div>
@@ -222,7 +233,7 @@
       <div class="section">
         <div class="section-number">Artículo 08</div>
         <h2>Privacidad</h2>
-        <p>El tratamiento de tus datos personales se describe en nuestra <a href="politica-de-privacidad.html">Política de Privacidad</a>, la cual forma parte integral de estos Términos.</p>
+        <p>El tratamiento de tus datos personales se describe en nuestra <a href="politica-de-privacidad.html" target="_blank">Política de Privacidad</a>, la cual forma parte integral de estos Términos.</p>
       </div>
       <div class="section">
         <div class="section-number">Artículo 09</div>
@@ -232,7 +243,8 @@
       <div class="section">
         <div class="section-number">Artículo 10</div>
         <h2>Limitación de responsabilidad</h2>
-        <p>El catálogo de colecciones se proporciona con fines informativos. Collecta no garantiza su exactitud o disponibilidad. En ningún caso Collecta será responsable por daños indirectos, incidentales o consecuentes derivados del uso o la imposibilidad de uso de la App.</p>
+        <p>El catálogo de colecciones se proporciona con fines informativos. Collecta no garantiza su exactitud o disponibilidad.</p>
+        <p>En la medida máxima permitida por la ley aplicable, en ningún caso Collecta será responsable por daños indirectos o incidentales. La responsabilidad total de Collecta ante cualquier reclamación derivada del servicio estará limitada, en todo caso, al monto efectivamente pagado por el usuario por las funciones Pro de la App.</p>
       </div>
       <div class="section">
         <div class="section-number">Artículo 11</div>
@@ -242,7 +254,7 @@
       <div class="section">
         <div class="section-number">Artículo 12</div>
         <h2>Ley aplicable y jurisdicción</h2>
-        <p>Estos Términos se rigen por las leyes de la República de Colombia, incluyendo la Ley 1480 de 2011 (Estatuto del Consumidor) y la Ley 1581 de 2012 (Protección de Datos Personales). Cualquier controversia se someterá a los jueces competentes de la ciudad de Bogotá, D.C., Colombia.</p>
+        <p>Estos Términos se rigen por las leyes de la República de Colombia, incluyendo la Ley 1480 de 2011 (Estatuto del Consumidor) y la Ley 1581 de 2012 (Protección de Datos Personales). Cualquier controversia se someterá a las autoridades y jueces competentes de la República de Colombia.</p>
       </div>
       <div class="section">
         <div class="section-number">Artículo 13</div>
@@ -260,7 +272,7 @@
     <div class="hero">
       <div>
         <h1>Terms and Conditions</h1>
-        <p class="meta">Last updated: May 13, 2026 · Version 1.0</p>
+        <p class="meta">Last updated: June 1, 2026 · Version 1.2</p>
       </div>
       <div class="lang-toggle">
         <button id="btn-es-en" onclick="setLang('es')">ES</button>
@@ -277,7 +289,7 @@
       <div class="section">
         <div class="section-number">Article 02</div>
         <h2>Description of Service</h2>
-        <p>Collecta is an application that allows users to register, organize, and share their collections of figures, sticker albums, and other collectible items. The App facilitates tracking collection progress and connecting collectors for trades.</p>
+        <p>Collecta is an application that allows users to register, organize, and track the progress of their collections. The App allows users to publicly share only the counters and numerical data of their duplicate or missing items based on the App's catalog, in order to facilitate contact for trades.</p>
         <p>Collecta <strong>does not buy, sell, or broker</strong> any collectible items. Any exchange or transaction between users is the sole responsibility of the parties involved.</p>
       </div>
       <div class="section">
@@ -294,9 +306,9 @@
       </div>
       <div class="section">
         <div class="section-number">Article 04</div>
-        <h2>User-Generated Content</h2>
-        <p>By uploading content to the App (profile photos, collection images, or other material), you declare that you hold the necessary rights to such content and grant Collecta a non-exclusive, royalty-free, worldwide license to display it within the App for the purpose of providing the service.</p>
-        <p>Collecta reserves the right to remove content that violates these Terms, third-party rights, or applicable law.</p>
+        <h2>User Content and Data</h2>
+        <p>The visual content and the collection catalog are the property of Collecta or their respective owners. Users cannot upload free text or custom images that are visible to other members of the community. Data entered by the user (such as checklists and item counters) is processed for the sole purpose of providing the technical backup and display service.</p>
+        <p style="margin-top:16px"><strong>Third-Party Trademarks:</strong> Collection names, trademarks, logos, and reference images of collectible items featured in Collecta's catalog are the property of their respective owners. Their inclusion in the App is solely for informational and reference purposes for users, and does not imply sponsorship, endorsement, or official association between Collecta and said brands.</p>
       </div>
       <div class="section">
         <div class="section-number">Article 05</div>
@@ -330,7 +342,7 @@
       <div class="section">
         <div class="section-number">Article 08</div>
         <h2>Privacy</h2>
-        <p>The processing of your personal data is described in our <a href="politica-de-privacidad.html">Privacy Policy</a>, which forms an integral part of these Terms.</p>
+        <p>The processing of your personal data is described in our <a href="politica-de-privacidad.html" target="_blank">Privacy Policy</a>, which forms an integral part of these Terms.</p>
       </div>
       <div class="section">
         <div class="section-number">Article 09</div>
@@ -340,7 +352,8 @@
       <div class="section">
         <div class="section-number">Article 10</div>
         <h2>Limitation of Liability</h2>
-        <p>The collection catalog is provided for informational purposes. Collecta does not guarantee its accuracy or availability. In no event shall Collecta be liable for indirect, incidental, or consequential damages arising from the use or inability to use the App.</p>
+        <p>The collection catalog is provided for informational purposes. Collecta does not guarantee its accuracy or availability.</p>
+        <p>To the maximum extent permitted by applicable law, in no event shall Collecta be liable for indirect or incidental damages. Collecta's total liability for any claim arising from the service shall be limited, in any case, to the amount actually paid by the user for the Pro features of the App.</p>
       </div>
       <div class="section">
         <div class="section-number">Article 11</div>
@@ -350,7 +363,7 @@
       <div class="section">
         <div class="section-number">Article 12</div>
         <h2>Governing Law and Jurisdiction</h2>
-        <p>These Terms are governed by the laws of the Republic of Colombia, including Law 1480 of 2011 (Consumer Statute) and Law 1581 of 2012 (Personal Data Protection). Any dispute shall be submitted to the competent courts of Bogotá, D.C., Colombia.</p>
+        <p>These Terms are governed by the laws of the Republic of Colombia, including Law 1480 of 2011 (Consumer Statute) and Law 1581 of 2012 (Personal Data Protection). Any dispute shall be submitted to the competent authorities and courts of the Republic of Colombia.</p>
       </div>
       <div class="section">
         <div class="section-number">Article 13</div>

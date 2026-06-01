@@ -197,6 +197,17 @@
     .right-item span {
       color: rgba(255,255,255,0.60);
     }
+
+    @media (max-width: 480px) {
+      .hero {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .lang-toggle {
+        align-self: flex-end;
+      }
+    }
   </style>
 </head>
 <body>
@@ -206,7 +217,7 @@
     <div class="hero">
       <div>
         <h1>Política de Privacidad</h1>
-        <p class="meta">Última actualización: 13 de mayo de 2026 · Versión 1.0</p>
+        <p class="meta">Última actualización: 1 de junio de 2026 · Versión 1.2</p>
       </div>
       <div class="lang-toggle">
         <button id="btn-es-es" class="active" onclick="setLang('es')">ES</button>
@@ -226,9 +237,9 @@
         <ul>
           <li><strong>Datos de cuenta:</strong> nombre de usuario, correo electrónico y URL de foto de perfil obtenida del inicio de sesión con Google; Collecta no almacena la imagen directamente.</li>
           <li><strong>Datos de colección:</strong> colecciones que sigues, progreso, ítems marcados y wishlist.</li>
-          <li><strong>Datos de uso:</strong> eventos de interacción dentro de la App (vía Firebase Analytics).</li>
-          <li><strong>Datos de error:</strong> registros de fallos técnicos (vía Firebase Crashlytics).</li>
-          <li><strong>Datos de publicidad:</strong> identificadores de dispositivo usados por Google AdMob (solo usuarios gratuitos).</li>
+          <li><strong>Datos de uso:</strong> eventos de interacción dentro de la App mediante herramientas analíticas.</li>
+          <li><strong>Datos de error:</strong> registros y reportes automáticos de fallos técnicos de la App.</li>
+          <li><strong>Datos de publicidad:</strong> identificadores anónimos de dispositivo usados para redes de anuncios (solo usuarios de la versión gratuita).</li>
           <li><strong>Datos de pago:</strong> gestionados exclusivamente por Google Play o App Store. Collecta no almacena datos de tarjetas.</li>
         </ul>
       </div>
@@ -256,19 +267,19 @@
       <div class="section">
         <div class="section-number">Sección 05</div>
         <h2>Proveedores de servicios</h2>
-        <p>Compartimos datos únicamente con los siguientes proveedores:</p>
+        <p>Compartimos datos únicamente con proveedores de servicios esenciales para el funcionamiento de la App, quienes actúan como encargados del tratamiento bajo estrictos estándares de confidencialidad. Estos servicios incluyen:</p>
         <div class="providers-grid">
-          <div class="provider-card"><div class="provider-name">Supabase</div><div class="provider-desc">Base de datos y autenticación</div></div>
-          <div class="provider-card"><div class="provider-name">Firebase</div><div class="provider-desc">Analytics y Crashlytics</div></div>
-          <div class="provider-card"><div class="provider-name">Google AdMob</div><div class="provider-desc">Publicidad (usuarios gratuitos)</div></div>
-          <div class="provider-card"><div class="provider-name">RevenueCat</div><div class="provider-desc">Gestión de compras in-app</div></div>
+          <div class="provider-card"><div class="provider-name">Infraestructura y Base de Datos</div><div class="provider-desc">Alojamiento en la nube y autenticación segura de usuarios.</div></div>
+          <div class="provider-card"><div class="provider-name">Analítica y Soporte Técnico</div><div class="provider-desc">Monitoreo de rendimiento y registro de fallos técnicos de la App.</div></div>
+          <div class="provider-card"><div class="provider-name">Publicidad Programática</div><div class="provider-desc">Despliegue de anuncios relevantes (solo para usuarios gratuitos).</div></div>
+          <div class="provider-card"><div class="provider-name">Gestión de Suscripciones</div><div class="provider-desc">Procesamiento y verificación de compras dentro de la aplicación.</div></div>
         </div>
-        <p style="margin-top:16px">No vendemos tus datos personales a terceros.</p>
+        <p style="margin-top:16px">No vendemos, alquilamos ni comercializamos tus datos personales con terceros bajo ninguna circunstancia.</p>
       </div>
       <div class="section">
         <div class="section-number">Sección 06</div>
         <h2>Transferencias internacionales</h2>
-        <p>Algunos de nuestros proveedores (Supabase, Google, RevenueCat) procesan datos fuera de Colombia. Estas transferencias se realizan con proveedores que cuentan con niveles de protección adecuados conforme a la legislación colombiana.</p>
+        <p>Algunos de nuestros proveedores externos de infraestructura y tecnología procesan datos fuera de Colombia. Estas transferencias se realizan con proveedores que cuentan con niveles de protección adecuados conforme a la legislación colombiana.</p>
       </div>
       <div class="section">
         <div class="section-number">Sección 07</div>
@@ -300,7 +311,7 @@
       <div class="section">
         <div class="section-number">Sección 11</div>
         <h2>Cookies y tecnologías similares</h2>
-        <p>La App móvil no usa cookies de navegador. Los SDKs de terceros (Firebase, AdMob) pueden usar identificadores de dispositivo con fines analíticos y publicitarios. Puedes limitar el seguimiento desde la configuración de privacidad de tu dispositivo.</p>
+        <p>La App móvil no usa cookies de navegador. Los SDKs de terceros integrados para analítica y publicidad pueden usar identificadores de dispositivo con fines analíticos y publicitarios. Puedes limitar el seguimiento desde la configuración de privacidad de tu dispositivo.</p>
       </div>
       <div class="section">
         <div class="section-number">Sección 12</div>
@@ -323,7 +334,7 @@
     <div class="hero">
       <div>
         <h1>Privacy Policy</h1>
-        <p class="meta">Last updated: May 13, 2026 · Version 1.0</p>
+        <p class="meta">Last updated: June 1, 2026 · Version 1.2</p>
       </div>
       <div class="lang-toggle">
         <button id="btn-es-en" onclick="setLang('es')">ES</button>
@@ -343,9 +354,9 @@
         <ul>
           <li><strong>Account data:</strong> username, email address, and profile photo URL obtained from Google Sign-In; Collecta does not store the image directly.</li>
           <li><strong>Collection data:</strong> collections you follow, progress, marked items, and wishlist.</li>
-          <li><strong>Usage data:</strong> in-app interaction events (via Firebase Analytics).</li>
-          <li><strong>Error data:</strong> technical crash logs (via Firebase Crashlytics).</li>
-          <li><strong>Advertising data:</strong> device identifiers used by Google AdMob (free users only).</li>
+          <li><strong>Usage data:</strong> in-app interaction events collected through analytics tools.</li>
+          <li><strong>Error data:</strong> technical logs and automatic crash reports from the App.</li>
+          <li><strong>Advertising data:</strong> anonymous device identifiers used by advertising networks (free tier users only).</li>
           <li><strong>Payment data:</strong> managed exclusively by Google Play or App Store. Collecta does not store card data.</li>
         </ul>
       </div>
@@ -373,19 +384,19 @@
       <div class="section">
         <div class="section-number">Section 05</div>
         <h2>Service Providers</h2>
-        <p>We share data only with the following providers:</p>
+        <p>We share data only with essential service providers necessary for the operation of the App, who act as data processors under strict confidentiality standards. These services include:</p>
         <div class="providers-grid">
-          <div class="provider-card"><div class="provider-name">Supabase</div><div class="provider-desc">Database and authentication</div></div>
-          <div class="provider-card"><div class="provider-name">Firebase</div><div class="provider-desc">Analytics and Crashlytics</div></div>
-          <div class="provider-card"><div class="provider-name">Google AdMob</div><div class="provider-desc">Advertising (free users)</div></div>
-          <div class="provider-card"><div class="provider-name">RevenueCat</div><div class="provider-desc">In-app purchase management</div></div>
+          <div class="provider-card"><div class="provider-name">Infrastructure & Database</div><div class="provider-desc">Cloud hosting and secure user authentication services.</div></div>
+          <div class="provider-card"><div class="provider-name">Analytics & Technical Support</div><div class="provider-desc">Performance monitoring and technical crash reporting.</div></div>
+          <div class="provider-card"><div class="provider-name">Programmatic Advertising</div><div class="provider-desc">Display of relevant ads (applicable only to free tier users).</div></div>
+          <div class="provider-card"><div class="provider-name">Subscription Management</div><div class="provider-desc">Processing and validation of in-app purchases.</div></div>
         </div>
-        <p style="margin-top:16px">We do not sell your personal data to third parties.</p>
+        <p style="margin-top:16px">We do not sell, rent, or trade your personal data with third parties under any circumstances.</p>
       </div>
       <div class="section">
         <div class="section-number">Section 06</div>
         <h2>International Transfers</h2>
-        <p>Some of our providers (Supabase, Google, RevenueCat) process data outside Colombia. These transfers are carried out with providers that maintain adequate protection levels in accordance with Colombian legislation.</p>
+        <p>Some of our third-party infrastructure and technology providers process data outside Colombia. These transfers are carried out with providers that maintain adequate protection levels in accordance with Colombian legislation.</p>
       </div>
       <div class="section">
         <div class="section-number">Section 07</div>
@@ -417,7 +428,7 @@
       <div class="section">
         <div class="section-number">Section 11</div>
         <h2>Cookies and Similar Technologies</h2>
-        <p>The mobile App does not use browser cookies. Third-party SDKs (Firebase, AdMob) may use device identifiers for analytics and advertising purposes. You can limit ad tracking through your device's privacy settings.</p>
+        <p>The mobile App does not use browser cookies. Integrated third-party SDKs for analytics and advertising may use device identifiers for analytics and advertising purposes. You can limit ad tracking through your device's privacy settings.</p>
       </div>
       <div class="section">
         <div class="section-number">Section 12</div>
