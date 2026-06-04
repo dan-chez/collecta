@@ -3,394 +3,269 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="google-site-verification" content="bVVp4K4GKFoE03qaEcTIwNwF33gfz0dNQYELfoyZFkY" />
-  <meta name="description" content="Collekta — La app para coleccionistas latinoamericanos. Registra tus figuras, álbumes y stickers." />
-  <link rel="icon" type="image/png" href="icono_collecta.png" />
-  <title>Collekta — Tu colección, organizada</title>
+  <meta name="description" content="Collekta — Sabe qué tienes, qué te falta y con quién puedes cambiar. La app para coleccionistas de LATAM." />
+  <link rel="icon" type="image/png" href="images/icono_collecta.png" />
+  <title>Collekta — La app para coleccionistas de LATAM</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=workspace_premium" rel="stylesheet">
   <style>
+    /* ── RESET ────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ── TOKENS — exact match app_colors.dart ─────────────── */
     :root {
-      --dark-base:      #111111;
-      --dark-surface:   #171717;
-      --dark-elevated:  #1E1E1E;
-      --primary:        #4338CA;
-      --primary-light:  #6366F1;
-      --gold:           #D4A843;
-      --gold-light:     #F0C84A;
-      --gold-dim:       rgba(212,168,67,.12);
-      --status-owned:   #4CAF81;
-      --border:         rgba(255,255,255,.07);
-      --border-med:     rgba(255,255,255,.13);
-      --text-primary:   #F0EDE8;
-      --text-secondary: rgba(240,237,232,.55);
-      --text-tertiary:  rgba(240,237,232,.32);
+      --base:      #111111;
+      --surface:   #171717;
+      --elevated:  #1E1E1E;
+      --card:      #242424;
+
+      --gold:      #D4A843;
+      --gold-dk:   #B8902A;
+      --gold-lt:   #F0C84A;
+      --gold-dim:  rgba(212,168,67,.10);
+      --gold-dim2: rgba(212,168,67,.06);
+
+      --green:     #4CAF81;
+      --red:       #D45050;
+      --orange:    #E8923A;
+      --purple:    #9B72C4;
+
+      --t1: #F0EDE8;
+      --t2: rgba(240,237,232,.58);
+      --t3: rgba(240,237,232,.32);
+
+      --b1: rgba(255,255,255,.07);
+      --b2: rgba(255,255,255,.11);
+      --b3: rgba(255,255,255,.20);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--dark-base);
-      color: var(--text-primary);
-      font-family: 'Figtree', system-ui, sans-serif;
+      background: var(--base);
+      color: var(--t1);
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
       overflow-x: hidden;
       line-height: 1.6;
     }
 
+    /* noise grain */
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-      background-size: 200px 200px;
-      pointer-events: none;
-      z-index: 0;
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
+      background-size: 200px;
+      pointer-events: none; z-index: 0;
     }
 
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(67,56,202,.45); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb { background: rgba(212,168,67,.35); border-radius: 2px; }
 
-    /* ── NAV ── */
+    /* ── NAV ──────────────────────────────────────────────── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      height: 68px;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 64px;
       padding: 0 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
       background: rgba(17,17,17,.9);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--b1);
     }
 
     .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      color: var(--gold);
-      text-decoration: none;
+      display: flex; align-items: center; gap: 9px;
+      font-size: 1.1rem; font-weight: 800;
+      color: var(--gold); text-decoration: none;
+      letter-spacing: -.2px;
     }
+    .nav-logo img { width: 28px; height: 28px; border-radius: 7px; }
 
-    .nav-logo img {
-      width: 30px;
-      height: 30px;
-      border-radius: 7px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-    }
-
+    .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 500;
+      color: var(--t2); text-decoration: none;
+      font-size: .85rem; font-weight: 500;
       transition: color .2s;
     }
-
-    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a:hover { color: var(--t1); }
 
     .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 9px 18px;
-      background: var(--primary);
-      color: #fff;
-      border-radius: 9px;
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 600;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px;
+      background: var(--gold); color: #111;
+      border-radius: 8px; font-size: .85rem; font-weight: 700;
       text-decoration: none;
-      transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 4px 20px rgba(67,56,202,.25);
+      transition: background .2s, transform .15s;
     }
+    .nav-cta:hover { background: var(--gold-lt); transform: translateY(-1px); }
 
-    .nav-cta:hover {
-      background: var(--primary-light);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 28px rgba(67,56,202,.4);
-    }
-
-    /* ── BLOB ── */
+    /* ── BLOBS ────────────────────────────────────────────── */
     .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(70px);
-      pointer-events: none;
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); pointer-events: none;
     }
 
-    /* ── HERO ── */
+    /* ── HERO ─────────────────────────────────────────────── */
     .hero {
       position: relative;
       min-height: 100vh;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
+      gap: 48px;
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 100px 48px 80px;
       overflow: hidden;
     }
 
-    .hero::after {
-      content: 'COLLEKTA';
-      position: absolute;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(70px, 11vw, 148px);
-      font-weight: 800;
-      color: rgba(255,255,255,.015);
-      white-space: nowrap;
-      bottom: 8%;
-      right: -1%;
-      letter-spacing: 0.02em;
-      pointer-events: none;
-      user-select: none;
-      z-index: 0;
-    }
-
-    .hero .blob-1 { width: 700px; height: 700px; background: rgba(67,56,202,.09);  top: -200px; left: -250px; }
-    .hero .blob-2 { width: 350px; height: 350px; background: rgba(212,168,67,.05); bottom: 40px; right: -80px; }
-    .hero .blob-3 { width: 240px; height: 240px; background: rgba(0,196,168,.04);  top: 35%; left: 55%; }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    /* Staggered load */
-    .hero-badge  { animation: hero-in .7s cubic-bezier(.22,.61,.36,1) both; animation-delay: .05s; }
-    .hero-title  { animation: hero-in .75s cubic-bezier(.22,.61,.36,1) both; animation-delay: .18s; }
-    .hero-desc   { animation: hero-in .7s cubic-bezier(.22,.61,.36,1) both; animation-delay: .33s; }
-    .hero-ctas   { animation: hero-in .7s cubic-bezier(.22,.61,.36,1) both; animation-delay: .46s; }
-    .phone-wrap  { animation: hero-in .8s cubic-bezier(.22,.61,.36,1) both; animation-delay: .2s; }
-
-    @keyframes hero-in {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--gold-dim);
-      border: 1px solid rgba(212,168,67,.22);
-      border-radius: 100px;
-      padding: 6px 14px;
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--gold);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin-bottom: 28px;
-    }
-
-    .hero-badge::before {
+    .hero::before { /* page-level background blob */
       content: '';
-      width: 6px; height: 6px;
-      background: var(--gold);
-      border-radius: 50%;
-      flex-shrink: 0;
-      animation: pulse-dot 2s ease-in-out infinite;
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 40%, rgba(212,168,67,.07) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 60%, rgba(76,175,129,.04) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
     }
 
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: .4; transform: scale(.65); }
+    .hero-blob-1 { width: 600px; height: 600px; background: rgba(212,168,67,.06); top: -150px; left: -200px; }
+    .hero-blob-2 { width: 300px; height: 300px; background: rgba(76,175,129,.04); bottom: 50px; right: -50px; }
+
+    .hero-text { position: relative; z-index: 1; }
+
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .72rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .hero-kicker::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--gold); opacity: .6;
     }
 
     .hero-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(3.6rem, 7vw, 6rem);
+      font-size: clamp(2.6rem, 5vw, 4.4rem);
       font-weight: 800;
-      letter-spacing: 0.01em;
-      line-height: 1.0;
+      letter-spacing: -.03em;
+      line-height: 1.08;
       margin-bottom: 22px;
       text-wrap: balance;
     }
 
-    .hero-title .brand {
-      display: flex;
-      align-items: center;
-      gap: 18px;
+    .hero-title em {
+      font-style: italic;
+      font-weight: 200;
       color: var(--gold);
     }
 
-    .hero-title .brand img {
-      width: 64px;
-      height: 64px;
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.08);
-      flex-shrink: 0;
-    }
-
-    .hero-title .sub {
-      display: block;
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.46em;
-      font-weight: 400;
-      letter-spacing: 0.01em;
-      line-height: 1.5;
-      margin-top: 12px;
-      color: var(--text-secondary);
-    }
-
     .hero-desc {
-      color: var(--text-secondary);
+      color: var(--t2);
       font-size: 1rem;
-      max-width: 400px;
-      margin-bottom: 40px;
       line-height: 1.78;
+      max-width: 420px;
+      margin-bottom: 40px;
+      font-weight: 400;
     }
 
-    .hero-ctas {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* Hero stagger */
+    .hero-kicker  { animation: fadein .6s cubic-bezier(.22,.61,.36,1) both; animation-delay: .05s; }
+    .hero-title   { animation: fadein .7s cubic-bezier(.22,.61,.36,1) both; animation-delay: .18s; }
+    .hero-desc    { animation: fadein .7s cubic-bezier(.22,.61,.36,1) both; animation-delay: .3s; }
+    .hero-ctas    { animation: fadein .7s cubic-bezier(.22,.61,.36,1) both; animation-delay: .42s; }
+    .hero-phone   { animation: fadein .8s cubic-bezier(.22,.61,.36,1) both; animation-delay: .18s; }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(26px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── STORE BUTTONS ── */
+    /* ── STORE BUTTONS ────────────────────────────────────── */
     .btn-store {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 20px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-family: 'Barlow', sans-serif;
-      font-weight: 600;
-      font-size: 0.875rem;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 20px; border-radius: 12px;
+      text-decoration: none; font-weight: 600; font-size: .875rem;
       transition: transform .2s cubic-bezier(.22,.61,.36,1), box-shadow .2s, background .2s;
     }
-
     .btn-store:hover { transform: translateY(-3px); }
 
     .btn-play {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 0 0 1px rgba(99,102,241,.3), 0 8px 28px rgba(67,56,202,.3);
+      background: var(--gold); color: #111;
+      box-shadow: 0 8px 28px rgba(212,168,67,.25);
     }
-    .btn-play:hover {
-      background: var(--primary-light);
-      box-shadow: 0 0 0 1px rgba(99,102,241,.5), 0 14px 40px rgba(67,56,202,.45);
-    }
+    .btn-play:hover { background: var(--gold-lt); box-shadow: 0 12px 36px rgba(212,168,67,.4); }
 
     .btn-apple {
-      background: var(--dark-elevated);
-      color: rgba(255,255,255,.75);
-      border: 1px solid var(--border-med);
+      background: var(--elevated);
+      color: rgba(240,237,232,.75);
+      border: 1px solid var(--b2);
     }
-    .btn-apple:hover { border-color: rgba(255,255,255,.22); color: #fff; }
+    .btn-apple:hover { border-color: var(--b3); color: var(--t1); }
 
     .btn-store svg { flex-shrink: 0; }
-
     .btn-store-label { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
-    .btn-store-label .small { font-size: 0.68rem; font-weight: 400; opacity: .6; }
-    .btn-store-label .big  { font-size: 0.9rem; font-weight: 700; }
+    .btn-store-label .small { font-size: .68rem; font-weight: 400; opacity: .65; }
+    .btn-store-label .big  { font-size: .9rem; font-weight: 700; }
 
-    /* ── PHONE ── */
-    .phone-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
+    /* ── PHONE (hero) ──────────────────────────────────────── */
+    .hero-phone {
+      position: relative; z-index: 1;
+      display: flex; justify-content: center; align-items: center;
     }
 
-    .phone-orbit {
-      position: absolute;
-      width: 336px; height: 548px;
-      border-radius: 58px;
-      background: conic-gradient(
-        from 0deg,
-        transparent 0%, rgba(67,56,202,.5) 18%,
-        rgba(212,168,67,.28) 36%, transparent 52%,
-        rgba(0,196,168,.22) 72%, transparent 88%
-      );
-      animation: orbit-spin 9s linear infinite;
-      filter: blur(5px);
-      opacity: .32;
-    }
-
-    @keyframes orbit-spin { to { transform: rotate(360deg); } }
-
-    .phone {
-      width: 256px;
-      height: 524px;
-      background: #060a12;
-      border-radius: 46px;
+    .phone-frame {
+      width: 419px; height: 856px;
+      background: #0a0a0a;
+      border-radius: 48px;
       border: 2px solid rgba(255,255,255,.12);
-      box-shadow: 0 0 0 8px rgba(255,255,255,.02), 0 50px 100px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.1);
-      position: relative;
-      overflow: hidden;
+      box-shadow:
+        0 0 0 8px rgba(255,255,255,.02),
+        0 60px 100px rgba(0,0,0,.85),
+        inset 0 1px 0 rgba(255,255,255,.1);
+      position: relative; overflow: hidden;
       animation: float 5s ease-in-out infinite;
-      z-index: 1;
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(-1.5deg); }
-      50%       { transform: translateY(-14px) rotate(-1.5deg); }
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50%       { transform: translateY(-14px) rotate(-2deg); }
     }
 
-    .phone::before {
+    .phone-frame::before { /* notch */
       content: '';
-      position: absolute;
-      top: 14px; left: 50%;
+      position: absolute; top: 14px; left: 50%;
       transform: translateX(-50%);
-      width: 68px; height: 5px;
-      background: rgba(255,255,255,.15);
-      border-radius: 3px;
-      z-index: 2;
+      width: 64px; height: 5px;
+      background: rgba(255,255,255,.14); border-radius: 3px; z-index: 2;
     }
 
     .phone-screen {
-      position: absolute;
-      inset: 0;
-      border-radius: 44px;
-      overflow: hidden;
+      position: absolute; inset: 0;
+      border-radius: 46px; overflow: hidden;
     }
 
     .phone-screen img {
       width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: top;
-      display: block;
+      object-fit: cover; object-position: top; display: block;
     }
 
-    .phone-glow {
+    .hero-phone-glow {
       position: absolute;
-      width: 320px; height: 320px;
-      background: rgba(67,56,202,.14);
-      border-radius: 50%;
-      filter: blur(60px);
+      width: 340px; height: 340px;
+      background: rgba(212,168,67,.1);
+      border-radius: 50%; filter: blur(60px);
       top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 0;
+      transform: translate(-50%, -50%); z-index: 0;
     }
 
-    /* ── SECTION SHARED ── */
-    section { position: relative; z-index: 1; }
-
+    /* ── SECTION BASE ─────────────────────────────────────── */
     .section-inner {
       max-width: 1200px;
       margin: 0 auto;
@@ -398,490 +273,922 @@
     }
 
     .section-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      font-size: clamp(2rem, 3.5vw, 2.9rem);
       font-weight: 800;
-      letter-spacing: 0.01em;
+      letter-spacing: -.03em;
       line-height: 1.1;
       margin-bottom: 18px;
       text-wrap: balance;
     }
 
     .section-desc {
-      color: var(--text-secondary);
+      color: var(--t2);
       font-size: 1rem;
-      max-width: 480px;
       line-height: 1.78;
+      max-width: 480px;
       margin-bottom: 56px;
     }
 
-    /* ── BRANDS MARQUEE ── */
-    .brands-section {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--dark-surface);
-      overflow: hidden;
-      position: relative;
+    /* ── ORIGIN STORY ─────────────────────────────────────── */
+    .origin-section {
+      background: var(--surface);
+      border-top: 1px solid var(--b1);
+      border-bottom: 1px solid var(--b1);
+      position: relative; z-index: 1; overflow: hidden;
     }
 
-    .brands-section::before {
-      content: '';
+    .origin-section .bg-blob {
       position: absolute;
+      width: 500px; height: 300px;
+      background: rgba(212,168,67,.05);
+      border-radius: 50%; filter: blur(80px);
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 500px; height: 150px;
-      background: rgba(67,56,202,.06);
-      border-radius: 50%;
-      filter: blur(60px);
       pointer-events: none;
     }
 
-    .brands-section::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, #171717 0%, transparent 12%, transparent 88%, #171717 100%);
-      pointer-events: none;
-      z-index: 2;
+    .origin-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 100px 48px;
+      position: relative; z-index: 1;
     }
 
-    .brands-inner {
-      padding: 52px 0;
-      position: relative;
-      z-index: 1;
+    .origin-rule {
+      width: 40px; height: 2px;
+      background: var(--gold); margin-bottom: 40px;
     }
 
-    .brands-header {
-      text-align: center;
-      margin-bottom: 28px;
-      padding: 0 24px;
+    .origin-quote {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 200;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--t1);
+      margin-bottom: 36px;
+      letter-spacing: -.01em;
     }
 
-    .brands-subtitle {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.3rem;
+    .origin-quote strong {
       font-weight: 700;
-      letter-spacing: 0.01em;
-      color: var(--text-primary);
-    }
-
-    .brands-subtitle span { color: var(--gold); }
-
-    .marquee-outer { overflow: hidden; }
-
-    .marquee-track {
-      display: flex;
-      gap: 10px;
-      width: max-content;
-      animation: marquee 30s linear infinite;
-      padding: 4px 0;
-    }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    .brand-tag {
-      background: var(--dark-elevated);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 10px 20px;
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      letter-spacing: .02em;
-      white-space: nowrap;
-      transition: border-color .2s, color .2s, background .2s;
-      cursor: default;
-      flex-shrink: 0;
-    }
-
-    .brand-tag:hover {
-      border-color: rgba(212,168,67,.35);
+      font-style: normal;
       color: var(--gold);
-      background: rgba(212,168,67,.05);
     }
 
-    .brand-tag.highlight {
-      border-color: rgba(99,102,241,.22);
-      color: var(--primary-light);
-      background: rgba(67,56,202,.09);
+    .origin-attribution {
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--t2);
+      letter-spacing: .01em;
     }
 
-    .brand-tag.highlight:hover {
-      border-color: rgba(99,102,241,.4);
-      color: #fff;
-      background: rgba(67,56,202,.18);
+    .origin-attribution span {
+      display: block;
+      font-size: .8rem;
+      font-weight: 400;
+      color: var(--t3);
+      margin-top: 4px;
     }
 
-    .brands-footnote {
-      text-align: center;
-      margin-top: 24px;
-      padding: 0 24px;
-      font-size: 0.78rem;
-      color: var(--text-tertiary);
-    }
-
-    /* ── FEATURES BENTO ── */
-    .features-section { background: var(--dark-base); }
-
-    .features-section .blob-f1 {
-      width: 500px; height: 500px;
-      background: rgba(67,56,202,.06);
-      bottom: -100px; right: -100px;
-    }
-
-    .features-bento {
+    .origin-context {
+      margin-top: 56px;
+      padding-top: 48px;
+      border-top: 1px solid var(--b1);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
     }
 
-    .feature-card {
-      background: var(--dark-surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px 28px;
-      transition: border-color .3s, transform .3s, box-shadow .3s;
+    .origin-context p {
+      color: var(--t2);
+      font-size: .95rem;
+      line-height: 1.78;
+    }
+
+    /* ── PHOTO PLACEHOLDER ─────────────────────────────────── */
+    .photo-placeholder {
+      border-radius: 16px;
+      background: var(--elevated);
+      border: 1px dashed var(--b3);
       position: relative;
       overflow: hidden;
-    }
-
-    .feature-card.wide-left  { grid-column: span 2; }
-    .feature-card.wide-right { grid-column: span 2; }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(67,56,202,.05) 0%, transparent 50%);
-      opacity: 0;
-      transition: opacity .3s;
-      border-radius: 20px;
-    }
-
-    .feature-card::after {
-      content: '';
-      position: absolute;
-      top: -100%; left: -80%;
-      width: 60%; height: 300%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.03), transparent);
-      transform: skewX(-20deg);
-      pointer-events: none;
-    }
-
-    .feature-card:hover {
-      border-color: rgba(99,102,241,.25);
-      transform: translateY(-4px);
-      box-shadow: 0 24px 60px rgba(0,0,0,.35);
-    }
-
-    .feature-card:hover::before { opacity: 1; }
-
-    .feature-card:hover::after {
-      animation: card-sweep .65s ease-out;
-    }
-
-    @keyframes card-sweep {
-      from { left: -80%; }
-      to   { left: 150%; }
-    }
-
-    .feature-icon {
-      width: 52px; height: 52px;
-      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
-      margin-bottom: 20px;
+      flex-direction: column;
+      gap: 8px;
+      padding: 32px;
+      text-align: center;
     }
 
-    .feature-icon.indigo { background: rgba(67,56,202,.14);  border: 1px solid rgba(99,102,241,.18); }
-    .feature-icon.teal   { background: rgba(0,196,168,.10);  border: 1px solid rgba(0,196,168,.18); }
-    .feature-icon.amber  { background: rgba(245,158,11,.09); border: 1px solid rgba(245,158,11,.18); }
-    .feature-icon.gold   { background: rgba(212,168,67,.10); border: 1px solid rgba(212,168,67,.18); }
+    .photo-placeholder .ph-icon {
+      font-size: 2rem;
+      opacity: .4;
+    }
 
-    .feature-card.wide-left .feature-icon,
-    .feature-card.wide-right .feature-icon { width: 56px; height: 56px; font-size: 1.55rem; }
+    .photo-placeholder .ph-label {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--t3);
+      line-height: 1.4;
+    }
 
-    .feature-title {
-      font-family: 'Barlow Condensed', sans-serif;
+    .photo-placeholder.tall { min-height: 320px; }
+    .photo-placeholder.medium { min-height: 220px; }
+
+    /* ── PROBLEM SECTION ──────────────────────────────────── */
+    .problem-section { background: var(--base); position: relative; z-index: 1; }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--b1);
+      border: 1px solid var(--b1);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .problem-card {
+      background: var(--elevated);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background .3s;
+    }
+
+    .problem-card:hover { background: var(--card); }
+
+    .problem-num { display: none; }
+
+    .problem-tag {
+      display: inline-block;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .problem-title {
       font-size: 1.25rem;
       font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: 0.01em;
+      letter-spacing: -.02em;
+      margin-bottom: 14px;
+      line-height: 1.25;
     }
 
-    .feature-card.wide-left .feature-title,
-    .feature-card.wide-right .feature-title { font-size: 1.4rem; }
-
-    .feature-desc {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
+    .problem-desc {
+      color: var(--t2);
+      font-size: .9rem;
       line-height: 1.72;
     }
 
-    /* ── HOW IT WORKS ── */
-    .how-section {
-      background: var(--dark-surface);
-      border-top: 1px solid var(--border);
+    /* ── FEATURES STICKY SCROLL ───────────────────────────── */
+    .features-section {
+      background: var(--surface);
+      border-top: 1px solid var(--b1);
+      position: relative; z-index: 1;
     }
 
-    .how-section .blob-h1 {
-      width: 600px; height: 400px;
-      background: rgba(67,56,202,.07);
-      top: -100px; left: -150px;
+    .features-header {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 48px 60px;
     }
 
-    .steps-flow {
+    .features-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px 100px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      position: relative;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
     }
 
-    .steps-flow::before {
-      content: '';
-      position: absolute;
-      top: 28px;
-      left: calc(33.33% / 2);
-      right: calc(33.33% / 2);
-      height: 1px;
-      background: linear-gradient(90deg, rgba(212,168,67,.3), rgba(99,102,241,.3), rgba(0,196,168,.3));
-      pointer-events: none;
-      z-index: 0;
+    /* ── SCROLLING STEPS ── */
+    .feature-steps { }
+
+    .feature-step {
+      min-height: 65vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 0;
+      opacity: .35;
+      transition: opacity .4s ease;
     }
 
-    .step {
-      padding: 0 32px 0 0;
-      position: relative;
-      z-index: 1;
-    }
+    .feature-step.active { opacity: 1; }
 
-    .step:last-child { padding-right: 0; }
-
-    .step-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.72rem;
+    .step-number {
+      font-size: .72rem;
       font-weight: 700;
       letter-spacing: .12em;
       color: var(--gold);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .step-num::before {
-      content: '';
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      background: var(--dark-elevated);
-      border: 1px solid rgba(212,168,67,.3);
-      display: flex;
-      flex-shrink: 0;
-    }
-
-    .step-dot {
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      background: var(--dark-elevated);
-      border: 1px solid rgba(212,168,67,.3);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: .05em;
-      flex-shrink: 0;
+      text-transform: uppercase;
       margin-bottom: 20px;
     }
 
     .step-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.4rem;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
       font-weight: 700;
-      letter-spacing: 0.01em;
-      margin-bottom: 12px;
+      letter-spacing: -.025em;
       line-height: 1.15;
+      margin-bottom: 16px;
       text-wrap: balance;
     }
 
     .step-desc {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.72;
+      color: var(--t2);
+      font-size: .95rem;
+      line-height: 1.78;
+      max-width: 420px;
     }
 
-    /* ── CTA ── */
-    .cta-section {
+    .step-detail {
+      margin-top: 20px;
+      padding: 16px 20px;
+      background: var(--elevated);
+      border: 1px solid var(--b1);
+      border-radius: 12px;
+      font-size: .875rem;
+      color: var(--t3);
+      max-width: 380px;
+    }
+
+    .step-detail strong { color: var(--t2); font-weight: 600; }
+
+    /* ── STICKY PHONE ── */
+    .features-phone-col {
+      position: sticky;
+      top: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 40px;
+    }
+
+    .feature-phone {
+      width: 403px;
+      height: 825px;
+      background: #0a0a0a;
+      border-radius: 46px;
+      border: 2px solid rgba(255,255,255,.12);
+      box-shadow: 0 0 0 8px rgba(255,255,255,.02), 0 50px 90px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.1);
       position: relative;
       overflow: hidden;
+    }
+
+    .feature-phone::before { /* notch */
+      content: '';
+      position: absolute; top: 14px; left: 50%;
+      transform: translateX(-50%);
+      width: 64px; height: 5px;
+      background: rgba(255,255,255,.14); border-radius: 3px; z-index: 10;
+    }
+
+    /* ── PHONE STATES ── */
+    .phone-state {
+      position: absolute; inset: 0;
+      border-radius: 44px;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .45s ease, transform .45s ease;
+      background: var(--base);
+    }
+
+    .phone-state.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mock UI shared */
+    .mock-statusbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 16px 4px;
+      font-size: 8px; font-weight: 600;
+      color: rgba(240,237,232,.6);
+    }
+
+    .mock-header {
+      padding: 8px 16px 12px;
+      font-size: 11px; font-weight: 700;
+      color: var(--t1);
+      border-bottom: 1px solid var(--b1);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .mock-section-label {
+      font-size: 9px; font-weight: 700;
+      color: var(--t3);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 10px 16px 6px;
+    }
+
+    /* ── STATE 1: Catálogo (real screenshot) ── */
+    #state-catalogo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top;
+    }
+
+    /* ── STATE 2: Álbum de stickers ── */
+    .mock-progress-row {
+      padding: 8px 16px;
+    }
+
+    .mock-progress-info {
+      display: flex; justify-content: space-between;
+      font-size: 9px; color: var(--t2);
+      margin-bottom: 5px;
+    }
+
+    .mock-progress-bar {
+      height: 4px; background: var(--b2); border-radius: 2px; overflow: hidden;
+    }
+
+    .mock-progress-fill {
+      height: 100%; border-radius: 2px;
+      background: var(--green);
+    }
+
+    .sticker-grid-mock {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+      padding: 10px 12px;
+    }
+
+    .sc {
+      aspect-ratio: 1;
+      border-radius: 4px;
+      border: 1px solid var(--b1);
+      background: var(--elevated);
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .sc.o { /* owned */
+      background: rgba(76,175,129,.15);
+      border-color: rgba(76,175,129,.3);
+    }
+
+    .sc.o::after {
+      content: '✓';
+      font-size: 8px;
+      color: var(--green);
+    }
+
+    .sc.r { /* repeated */
+      background: rgba(212,168,67,.15);
+      border-color: rgba(212,168,67,.3);
+    }
+
+    .sc.r::after {
+      content: '×2';
+      font-size: 6px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    /* ── STATE 3: Progreso ── */
+    .progress-collection-list {
+      padding: 4px 0;
+    }
+
+    .pci {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--b1);
+    }
+
+    .pci-name {
+      font-size: 9px; font-weight: 600;
+      color: var(--t1); margin-bottom: 6px;
+    }
+
+    .pci-bar {
+      height: 5px; background: var(--b2);
+      border-radius: 3px; overflow: hidden; margin-bottom: 4px;
+    }
+
+    .pci-fill { height: 100%; border-radius: 3px; background: var(--green); }
+
+    .pci-stats {
+      display: flex; justify-content: space-between;
+      font-size: 8px; color: var(--t3);
+    }
+
+    .pci-pct { color: var(--green); font-weight: 700; font-size: 8px; }
+
+    /* ── STATE 4: Repetidos/Cambios ── */
+    .trade-list { padding: 4px 0; }
+
+    .trade-item {
+      display: flex; align-items: center;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--b1);
+      gap: 10px;
+    }
+
+    .trade-thumb {
+      width: 28px; height: 28px;
+      border-radius: 6px;
+      background: var(--card);
+      border: 1px solid var(--b1);
+      flex-shrink: 0;
+    }
+
+    .trade-info { flex: 1; min-width: 0; }
+
+    .trade-name {
+      font-size: 9px; font-weight: 600;
+      color: var(--t1); white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis;
+    }
+
+    .trade-collection {
+      font-size: 8px; color: var(--t3); margin-top: 1px;
+    }
+
+    .trade-badge {
+      font-size: 8px; font-weight: 700;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid rgba(212,168,67,.25);
+      border-radius: 4px;
+      padding: 2px 5px;
+      flex-shrink: 0;
+    }
+
+    /* ── STATE 5: Perfil público ── */
+    .profile-mock-inner { padding: 12px; }
+
+    .profile-avatar-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 8px 0 14px;
+      border-bottom: 1px solid var(--b1);
+      margin-bottom: 12px;
+    }
+
+    .profile-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dk));
+      border: 2px solid rgba(212,168,67,.4);
+      flex-shrink: 0;
+    }
+
+    .profile-name { font-size: 10px; font-weight: 700; color: var(--t1); }
+
+    .profile-username { font-size: 8px; color: var(--t3); margin-top: 1px; }
+
+    .pro-badge-mini {
+      margin-top: 4px;
+      display: inline-block;
+      font-size: 7px; font-weight: 700;
+      background: var(--gold-dim);
+      border: 1px solid rgba(212,168,67,.3);
+      color: var(--gold);
+      border-radius: 3px;
+      padding: 1px 5px;
+      letter-spacing: .05em;
+    }
+
+    .profile-coll-row {
+      display: flex; gap: 6px; margin-bottom: 8px;
+    }
+
+    .profile-coll-chip {
+      flex: 1;
+      background: var(--elevated);
+      border: 1px solid var(--b1);
+      border-radius: 8px;
+      padding: 8px 6px;
+      text-align: center;
+    }
+
+    .chip-label { font-size: 7px; color: var(--t3); }
+    .chip-pct   { font-size: 10px; font-weight: 700; color: var(--green); }
+    .chip-name  { font-size: 7px; color: var(--t2); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .profile-wishlist {
+      background: var(--elevated);
+      border: 1px solid var(--b1);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+
+    .wishlist-title { font-size: 8px; font-weight: 700; color: var(--t2); margin-bottom: 6px; }
+
+    .wishlist-item {
+      font-size: 8px; color: var(--t3);
+      display: flex; justify-content: space-between;
+      padding: 3px 0;
+      border-top: 1px solid var(--b1);
+    }
+
+    .wishlist-item span { color: var(--purple); font-size: 7px; }
+
+    /* ── COMMUNITY SECTION ─────────────────────────────────── */
+    .community-section {
+      background: var(--base);
+      border-top: 1px solid var(--b1);
+      position: relative; z-index: 1;
+    }
+
+
+    /* ── COMMUNITY ────────────────────────────────────────── */
+    .community-inner-full {
+      max-width: 1100px; margin: 0 auto;
+      padding: 100px 48px;
+    }
+
+    .community-acts {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 0;
+      align-items: center;
+      margin-bottom: 56px;
+    }
+
+    .ca {
+      background: var(--elevated);
+      border: 1px solid var(--b1);
+      border-radius: 16px;
+      padding: 32px 28px;
+    }
+
+    .ca-highlight {
+      border-color: rgba(212,168,67,.25);
+      background: rgba(212,168,67,.05);
+    }
+
+    .ca-num {
+      font-size: .68rem; font-weight: 700;
+      letter-spacing: .12em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 14px;
+    }
+
+    .ca-text {
+      font-size: 1rem; font-weight: 500;
+      line-height: 1.6; color: var(--t1);
+    }
+
+    .ca-arrow {
+      font-size: 1.4rem; color: var(--t3);
+      padding: 0 20px; flex-shrink: 0;
+    }
+
+    .community-footnote {
+      text-align: center;
+      color: var(--t2);
+      font-size: .95rem;
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 960px) {
+      .community-acts {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .ca-arrow {
+        text-align: center;
+        transform: rotate(90deg);
+        padding: 0;
+      }
+    }
+
+    /* ── PRO SECTION ───────────────────────────────────────── */
+    .pro-section {
+      background: var(--surface);
+      border-top: 1px solid var(--b1);
+      position: relative; z-index: 1; overflow: hidden;
+    }
+
+    .pro-section-blob {
+      position: absolute;
+      width: 700px; height: 400px;
+      background: rgba(212,168,67,.07);
+      border-radius: 50%; filter: blur(80px);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .pro-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 100px 48px;
+      position: relative; z-index: 1;
+    }
+
+    .pro-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .pro-kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .pro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    /* ── PRO CARD ── */
+    .pro-card-wrapper {
+      padding: 1px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--gold) 0%, rgba(212,168,67,.3) 50%, var(--gold-dk) 100%);
+      background-size: 200% auto;
+      animation: gold-border 4s linear infinite;
+    }
+
+    @keyframes gold-border {
+      to { background-position: 200% center; }
+    }
+
+    .pro-card {
+      background: var(--elevated);
+      border-radius: 23px;
+      padding: 40px 36px;
+    }
+
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal; font-style: normal;
+      line-height: 1; letter-spacing: normal;
+      text-transform: none; white-space: nowrap;
+      display: inline-block;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .pro-card-crown {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+      display: block;
+      color: var(--gold);
+    }
+
+    .pro-card-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .pro-card-tagline {
+      font-size: .875rem;
+      color: var(--t2);
+      margin-bottom: 32px;
+    }
+
+    .pro-price-block {
+      background: var(--card);
+      border: 1px solid var(--b2);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .pro-price-model {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: -.02em;
+      line-height: 1;
+    }
+
+    .pro-price-note {
+      font-size: .8rem;
+      color: var(--t3);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .pro-price-highlight {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-top: 10px;
+    }
+
+    .pro-cta-btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: var(--gold);
+      color: #111;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: .95rem;
+      text-decoration: none;
+      text-align: center;
+      transition: background .2s, transform .15s;
+    }
+
+    .pro-cta-btn:hover { background: var(--gold-lt); transform: translateY(-2px); }
+
+    /* ── PRO FEATURES LIST ── */
+    .pro-features { }
+
+    .pro-features h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-bottom: 28px;
+      color: var(--t1);
+    }
+
+    .pro-feature-item {
+      display: flex;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--b1);
+    }
+
+    .pro-feature-item:last-child { border-bottom: none; }
+
+    .pfi-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(212,168,67,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+
+    .pfi-text h4 {
+      font-size: .95rem; font-weight: 700;
+      margin-bottom: 4px; letter-spacing: -.01em;
+    }
+
+    .pfi-text p {
+      font-size: .85rem; color: var(--t2); line-height: 1.6;
+    }
+
+    /* ── CTA SECTION ───────────────────────────────────────── */
+    .cta-section {
       background:
-        radial-gradient(ellipse at 20% 50%, rgba(67,56,202,.14) 0%, transparent 55%),
-        radial-gradient(ellipse at 80% 50%, rgba(0,196,168,.06) 0%, transparent 55%),
-        var(--dark-base);
+        radial-gradient(ellipse at 30% 50%, rgba(212,168,67,.1) 0%, transparent 55%),
+        radial-gradient(ellipse at 70% 50%, rgba(76,175,129,.05) 0%, transparent 55%),
+        var(--base);
+      border-top: 1px solid var(--b1);
+      position: relative; z-index: 1; overflow: hidden;
     }
 
     .cta-section::before {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
       background-size: 50px 50px;
       pointer-events: none;
-      z-index: 0;
-    }
-
-    .cta-section .blob-c1 {
-      width: 700px; height: 420px;
-      background: rgba(67,56,202,.1);
-      top: -140px; left: 50%;
-      transform: translateX(-50%);
-      z-index: 0;
     }
 
     .cta-inner {
-      max-width: 680px;
-      margin: 0 auto;
+      max-width: 680px; margin: 0 auto;
       padding: 120px 24px;
       text-align: center;
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
     }
 
-    .cta-inner .section-title { margin-bottom: 18px; }
-    .cta-inner .section-desc  { margin: 0 auto 44px; }
+    .cta-inner .section-title { margin-bottom: 16px; }
+    .cta-inner .section-desc { margin: 0 auto 44px; }
 
     .cta-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
+      display: flex; gap: 12px;
+      justify-content: center; flex-wrap: wrap;
     }
 
-    /* ── FOOTER ── */
+    /* ── FOOTER ────────────────────────────────────────────── */
     footer {
-      background: var(--dark-surface);
-      border-top: 1px solid var(--border);
+      background: var(--surface);
+      border-top: 1px solid var(--b1);
       padding: 40px 48px;
     }
 
     .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
+      flex-wrap: wrap; gap: 20px;
     }
 
     .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 1rem; font-weight: 800;
       color: var(--gold);
     }
 
-    .footer-brand img {
-      width: 24px; height: 24px;
-      border-radius: 6px;
+    .footer-brand img { width: 24px; height: 24px; border-radius: 6px; }
+
+    .footer-slogan {
+      font-size: .8rem; font-weight: 500;
+      color: var(--gold); opacity: .7;
+      margin-top: 3px; letter-spacing: .01em;
     }
 
     .footer-copy {
-      font-size: 0.78rem;
-      color: var(--text-tertiary);
-      margin-top: 4px;
+      font-size: .78rem; color: var(--t3); margin-top: 4px;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 28px;
-      flex-wrap: wrap;
-    }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
 
     .footer-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.85rem;
-      transition: color .2s;
+      color: var(--t2); text-decoration: none;
+      font-size: .85rem; transition: color .2s;
     }
 
-    .footer-links a:hover { color: var(--text-primary); }
+    .footer-links a:hover { color: var(--t1); }
 
-    /* ── REVEAL ── */
-    .reveal {
-      opacity: 1; /* visible by default — reveals enhance, don't gate */
-      transform: translateY(0);
-    }
+    /* ── REVEAL ────────────────────────────────────────────── */
+    .reveal { opacity: 1; transform: translateY(0); }
 
     @media (prefers-reduced-motion: no-preference) {
       .reveal {
-        opacity: 0;
-        transform: translateY(20px);
+        opacity: 0; transform: translateY(20px);
         transition: opacity .65s ease, transform .65s ease;
       }
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
+      .reveal.visible { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .features-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
       }
-    }
 
-    @media (prefers-reduced-motion: reduce) {
-      .marquee-track  { animation: none; }
-      .phone-orbit    { animation: none; }
-      .hero-badge,
-      .hero-title,
-      .hero-desc,
-      .hero-ctas,
-      .phone-wrap     { animation: none; }
-      @keyframes float { 0%, 100% { transform: rotate(-1.5deg); } }
-    }
+      .features-phone-col {
+        position: relative; top: auto;
+        padding: 48px 0 0;
+        order: -1;
+      }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) {
-      .features-bento { grid-template-columns: 1fr 1fr; }
-      .feature-card.wide-left,
-      .feature-card.wide-right { grid-column: span 1; }
-      .steps-flow { grid-template-columns: 1fr; gap: 40px; }
-      .steps-flow::before { display: none; }
-      .step { padding: 0; }
+      .feature-step {
+        min-height: auto;
+        padding: 32px 0;
+        opacity: 1;
+      }
+
+      .origin-context { grid-template-columns: 1fr; }
+      .community-inner { grid-template-columns: 1fr; }
+      .pro-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
-      nav { padding: 0 20px; height: 60px; }
+      nav { padding: 0 20px; height: 58px; }
       .nav-links { display: none; }
 
-      .hero { padding: 80px 20px 60px; }
-      .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-      .hero-title .brand { justify-content: center; }
-      .hero-desc { margin: 0 auto 32px; }
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 80px 20px 60px;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .hero-kicker { justify-content: center; }
+      .hero-phone { order: -1; }
+      .phone-frame { width: 325px; height: 663px; }
+
       .hero-ctas { justify-content: center; }
-      .phone-wrap { order: -1; }
-      .phone { width: 200px; height: 408px; }
-      .phone-orbit { width: 260px; height: 430px; }
 
-      .section-inner { padding: 72px 20px; }
+      .origin-inner { padding: 72px 20px; }
+      .section-inner,
+      .features-header,
+      .features-layout,
+      .community-inner,
+      .pro-inner { padding-left: 20px; padding-right: 20px; }
 
-      .features-bento { grid-template-columns: 1fr; gap: 12px; }
-      .feature-card.wide-left,
-      .feature-card.wide-right { grid-column: span 1; }
-
+      .problem-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
       footer { padding: 32px 20px; }
-      .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+
+      @keyframes float { 0%, 100% { transform: rotate(-2deg); } }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-kicker, .hero-title, .hero-desc, .hero-ctas, .hero-phone { animation: none; }
+      .phone-frame { animation: none; }
+      .pro-card-wrapper { animation: none; }
+      .phone-state { transition: none; }
     }
   </style>
 </head>
@@ -890,232 +1197,376 @@
   <!-- NAV -->
   <nav>
     <a href="/" class="nav-logo">
-      <img src="icono_collecta.png" alt="Collekta" />
+      <img src="images/icono_collecta.png" alt="Collekta" />
       Collekta
     </a>
     <ul class="nav-links">
-      <li><a href="#features">Funciones</a></li>
-      <li><a href="#como-funciona">Cómo funciona</a></li>
-      <li><a href="#descarga">Descargar</a></li>
+      <li><a href="#origen">La historia</a></li>
+      <li><a href="#funciones">Funciones</a></li>
+      <li><a href="#pro">Collekta Pro</a></li>
     </ul>
-    <a href="#descarga" class="nav-cta">Descargar gratis</a>
+    <a href="https://play.google.com/store/apps/details?id=com.danchez.collecta.app" class="nav-cta" target="_blank" rel="noopener">Descargar gratis</a>
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
+  <section class="hero" aria-label="Introducción">
+    <div class="blob hero-blob-1"></div>
+    <div class="blob hero-blob-2"></div>
 
-    <div class="hero-inner">
-      <div class="hero-text">
-        <div class="hero-badge">Ya disponible en Android</div>
-        <h1 class="hero-title">
-          <span class="brand">
-            <img src="icono_collecta.png" alt="Collekta icon" />
-            Collekta
-          </span>
-          <span class="sub">Tu colección,<br>completamente organizada.</span>
-        </h1>
-        <p class="hero-desc">
-          La app para coleccionistas latinoamericanos. Registra tus figuras,
-          álbumes de stickers y tazos. Sabe qué tienes, qué te falta y con
-          quién puedes cambiar.
-        </p>
-        <div class="hero-ctas">
-          <a href="#" class="btn-store btn-play" id="btn-play">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-            </svg>
-            <span class="btn-store-label">
-              <span class="small">Disponible en</span>
-              <span class="big">Google Play</span>
-            </span>
-          </a>
-          <a href="#" class="btn-store btn-apple">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-            </svg>
-            <span class="btn-store-label">
-              <span class="small">Próximamente en</span>
-              <span class="big">App Store</span>
-            </span>
-          </a>
-        </div>
-      </div>
+    <div class="hero-text">
+      <div class="hero-kicker">Para coleccionistas de LATAM</div>
+      <h1 class="hero-title">
+        Sabes qué tienes,<br>
+        qué te falta y<br>
+        <em>con quién intercambiar.</em>
+      </h1>
+      <p class="hero-desc">
+        La app que los coleccionistas latinoamericanos siempre quisieron.
+        Catálogo curado, marcado rápido, detección automática de repetidos
+        y perfil público para intercambios.
+      </p>
+      <div class="hero-ctas store-buttons"></div>
+    </div>
 
-      <div class="phone-wrap">
-        <div class="phone-glow"></div>
-        <div class="phone-orbit" aria-hidden="true"></div>
-        <div class="phone">
-          <div class="phone-screen">
-            <img src="screenshot.png" alt="Collekta app: vista de progreso de una colección" />
-          </div>
+    <div class="hero-phone">
+      <div class="hero-phone-glow"></div>
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <img src="images/screenshot-01.png" alt="Pantalla de Explorar en Collekta" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- BRANDS MARQUEE -->
-  <div class="brands-section" id="colecciones">
-    <div class="brands-inner">
-      <div class="brands-header">
-        <h3 class="brands-subtitle">Tus colecciones favoritas, <span>todas en un lugar</span></h3>
+  <!-- ORIGIN STORY -->
+  <section class="origin-section" id="origen">
+    <div class="bg-blob"></div>
+    <div class="origin-inner">
+      <div class="origin-rule"></div>
+      <blockquote class="origin-quote">
+        "En cada evento de coleccionistas llegaba <strong>la oportunidad de intercambiar</strong>,
+        pero no tenía una forma rápida de saber exactamente qué ofrecer.
+        Anotaciones en papel, listas en el celular, mensajes de WhatsApp a mí mismo…
+        nada funcionaba bien."
+      </blockquote>
+      <div class="origin-attribution">
+        Daniel Sánchez
+        <span>Coleccionista y fundador de Collekta</span>
       </div>
-      <div class="marquee-outer" aria-label="Marcas disponibles en Collekta">
-        <div class="marquee-track" aria-hidden="true">
-          <span class="brand-tag">Bonice</span>
-          <span class="brand-tag highlight">✦ Paleta Drácula</span>
-          <span class="brand-tag">Coca-Cola</span>
-          <span class="brand-tag">Colanta</span>
-          <span class="brand-tag highlight">✦ Yogo Premio</span>
-          <span class="brand-tag">El Tiempo</span>
-          <span class="brand-tag">Éxito</span>
-          <span class="brand-tag highlight">✦ Panini</span>
-          <span class="brand-tag">Galleta Gol</span>
-          <span class="brand-tag">Kinder</span>
-          <span class="brand-tag">McDonald's</span>
-          <span class="brand-tag">Nucita</span>
-          <span class="brand-tag highlight">✦ Chocolatina Jet</span>
-          <span class="brand-tag">Popsy</span>
-          <span class="brand-tag">Trululu</span>
-          <span class="brand-tag">Yogo Yogo</span>
-          <span class="brand-tag highlight">✦ Tazos</span>
-          <span class="brand-tag">Drácula</span>
-          <span class="brand-tag">Bonice</span>
-          <span class="brand-tag highlight">✦ Paleta Drácula</span>
-          <span class="brand-tag">Coca-Cola</span>
-          <span class="brand-tag">Colanta</span>
-          <span class="brand-tag highlight">✦ Yogo Premio</span>
-          <span class="brand-tag">El Tiempo</span>
-          <span class="brand-tag">Éxito</span>
-          <span class="brand-tag highlight">✦ Panini</span>
-          <span class="brand-tag">Galleta Gol</span>
-          <span class="brand-tag">Kinder</span>
-          <span class="brand-tag">McDonald's</span>
-          <span class="brand-tag">Nucita</span>
-          <span class="brand-tag highlight">✦ Chocolatina Jet</span>
-          <span class="brand-tag">Popsy</span>
-          <span class="brand-tag">Trululu</span>
-          <span class="brand-tag">Yogo Yogo</span>
-          <span class="brand-tag highlight">✦ Tazos</span>
-          <span class="brand-tag">Drácula</span>
+
+      <div class="origin-context">
+        <p>
+          Daniel es coleccionista desde siempre: desde figuras promocionales y tazos, hasta álbumes de stickers.
+          Al recorrer ferias y eventos de intercambio en Colombia, descubrió que su frustración
+          era la misma que compartía toda la comunidad.
+        </p>
+        <div>
+          <p>
+            Como desarrollador, vio la oportunidad perfecta para crear la herramienta que él mismo extrañaba.
+            Así nació Collekta: de la pasión de un coleccionista que sabe programar
+            y que decidió solucionar un problema que frena a millones de apasionados en LATAM.
+          </p>
+          <!-- PLACEHOLDER: foto de Daniel con su colección -->
+          <!--
+          <div class="photo-placeholder medium" style="margin-top: 24px;">
+            <div class="ph-icon">📸</div>
+            <div class="ph-label">Foto de Daniel con su colección personal<br>o en un evento de coleccionistas</div>
+          </div>
+          -->
         </div>
       </div>
-      <p class="brands-footnote">El catálogo crece continuamente. ¿No ves tu colección? Pronto estará disponible.</p>
     </div>
-  </div>
+  </section>
 
-  <!-- FEATURES -->
-  <section class="features-section" id="features">
-    <div class="blob blob-f1"></div>
+  <!-- PROBLEM -->
+  <section class="problem-section" id="problemas">
     <div class="section-inner">
-      <h2 class="section-title reveal">Todo lo que necesita<br>un coleccionista en serio.</h2>
+      <h2 class="section-title reveal">Los problemas que<br>todos compartimos.</h2>
       <p class="section-desc reveal">
-        Diseñado para la comunidad latina. Sin complicaciones, con todo el
-        control que siempre quisiste sobre tu colección.
+        Cuatro situaciones que cualquier coleccionista en LATAM reconoce al instante.
       </p>
 
-      <div class="features-bento">
-        <div class="feature-card wide-left reveal">
-          <div class="feature-icon indigo">📦</div>
-          <div class="feature-title">Registra tu colección</div>
-          <p class="feature-desc">
-            Marca qué figuras y stickers tienes con un solo tap. Grids
-            inteligentes que se adaptan al tipo de coleccionable: álbumes de
-            5 columnas, figuras con variantes, series de tomos.
+      <div class="problem-grid">
+        <div class="problem-card reveal">
+          <div class="problem-num">01</div>
+          <div class="problem-tag">Inventario</div>
+          <h3 class="problem-title">"No sé exactamente qué me falta."</h3>
+          <p class="problem-desc">
+            Cuando manejas decenas o cientos de piezas, perder el hilo es inevitable.
+            Terminas dependiendo de listas en papel, hojas de cálculo o grupos de WhatsApp
+            que se pierden en el chat.
           </p>
         </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon teal">📊</div>
-          <div class="feature-title">Rastrea tu progreso</div>
-          <p class="feature-desc">
-            Barras de progreso y porcentajes en tiempo real para cada álbum o serie.
+        <div class="problem-card reveal">
+          <div class="problem-num">02</div>
+          <div class="problem-tag">Repetidos</div>
+          <h3 class="problem-title">"Tengo repetidos y no sé cuáles ofrecer."</h3>
+          <p class="problem-desc">
+            Los intercambios son parte central del coleccionismo. Saber exactamente qué te sobra
+            es la clave para cerrar intercambios rápidos, pero mantener esa información ordenada
+            de forma manual es casi imposible.
           </p>
         </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon amber">🔄</div>
-          <div class="feature-title">Cambia repetidos</div>
-          <p class="feature-desc">
-            La app detecta tus repetidos automáticamente y te conecta con otros coleccionistas.
+        <div class="problem-card reveal">
+          <div class="problem-num">03</div>
+          <div class="problem-tag">Wishlist</div>
+          <h3 class="problem-title">"¿Qué es lo que sigo buscando?"</h3>
+          <p class="problem-desc">
+            Una lista de deseos clara te permite compartir tus faltantes en grupos, mostrársela
+            a otros coleccionistas o recordar tus prioridades al visitar una feria o tienda.
           </p>
         </div>
-        <div class="feature-card wide-right reveal">
-          <div class="feature-icon gold">🔍</div>
-          <div class="feature-title">Descubre colecciones</div>
-          <p class="feature-desc">
-            Explora el catálogo completo de colecciones disponibles en LATAM.
-            Agrega las que te interesan con un toque y sigue tu progreso automáticamente.
+        <div class="problem-card reveal">
+          <div class="problem-num">04</div>
+          <div class="problem-tag">LATAM</div>
+          <h3 class="problem-title">"No existe una app hecha para nosotros."</h3>
+          <p class="problem-desc">
+            Plataformas como Discogs o CollectR se enfocan en vinilos o cómics norteamericanos.
+            Ninguna ofrece soluciones para colecciones locales como Paleta Drácula, Yogo Premio,
+            Chocolatina Jet, Panini o Tazos. <strong style="color:var(--gold)">Hasta ahora.</strong>
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section class="how-section" id="como-funciona">
-    <div class="blob blob-h1"></div>
-    <div class="section-inner">
-      <h2 class="section-title reveal">Tres pasos para<br>nunca perder la cuenta.</h2>
+  <!-- FEATURES STICKY SCROLL -->
+  <section class="features-section" id="funciones">
+    <div class="features-header">
+      <h2 class="section-title reveal">Olvídate de<br>las complicaciones.</h2>
+      <p class="section-desc reveal">
+        Sin configuraciones difíciles ni hojas de cálculo. Abre la app, busca tu colección
+        y empieza a marcar en un toque.
+      </p>
+    </div>
 
-      <div class="steps-flow">
-        <div class="step reveal">
-          <div class="step-dot">01</div>
-          <h3 class="step-title">Agrega tu colección</h3>
+    <div class="features-layout">
+      <!-- Scrolling steps (left) -->
+      <div class="feature-steps">
+
+        <div class="feature-step active" data-state="state-catalogo">
+          <div class="step-number">01 — Catálogo</div>
+          <h3 class="step-title">Todo listo para ti.<br>Busca y encuentra.</h3>
           <p class="step-desc">
-            Descarga Collekta, busca tu álbum o serie en el catálogo y empieza a marcar
-            lo que ya tienes. Un tap por ítem, sin registro tedioso.
+            Collekta centraliza las colecciones más populares de LATAM. Olvídate de crear registros
+            desde cero: ya incluimos todas las piezas, variantes oficiales, imágenes y detalles
+            de cada álbum o set.
           </p>
+          <div class="step-detail">
+            <strong>Paleta Drácula, Yogo Premio, Panini, Chocolatina Jet, Tazos, TCG</strong> y muchas más.
+            El catálogo crece continuamente.
+          </div>
         </div>
-        <div class="step reveal">
-          <div class="step-dot">02</div>
-          <h3 class="step-title">Ve qué te falta y qué tienes de más</h3>
+
+        <div class="feature-step" data-state="state-stickers">
+          <div class="step-number">02 — Marcado rápido</div>
+          <h3 class="step-title">Marca álbumes en segundos y domina cada detalle.</h3>
           <p class="step-desc">
-            La app calcula tu progreso al instante. Los repetidos aparecen marcados
-            automáticamente como disponibles para cambio.
+            Diseñada para la velocidad. Un marcado táctil optimizado te permite actualizar
+            tu progreso en un instante. ¿Coleccionas figuras con variantes? Encuentra y organiza
+            versiones especiales, colores y ediciones exclusivas de forma clara y sin complicaciones.
           </p>
+          <div class="step-detail">
+            Creado para que marques <strong>decenas de stickers en segundos</strong>, no en minutos.
+          </div>
         </div>
-        <div class="step reveal">
-          <div class="step-dot">03</div>
-          <h3 class="step-title">Conecta con otros coleccionistas</h3>
+
+        <div class="feature-step" data-state="state-progreso">
+          <div class="step-number">03 — Progreso</div>
+          <h3 class="step-title">Tu progreso calculado al instante.</h3>
           <p class="step-desc">
-            Tu perfil público muestra lo que buscas y lo que puedes dar.
-            Los cambios se resuelven entre coleccionistas, sin intermediarios.
+            Visualiza tu avance de inmediato. El porcentaje y los contadores se actualizan
+            automáticamente con cada pieza que marcas, eliminando la necesidad de contar a mano.
+            Olvídate para siempre de la duda: «¿Cuánto me falta por llenar?»
           </p>
+          <div class="step-detail">
+            Rendimiento instantáneo: consulta tu progreso al segundo,
+            sin importar qué tan grande sea tu colección.
+          </div>
         </div>
+
+        <div class="feature-step" data-state="state-cambios">
+          <div class="step-number">04 — Cambios</div>
+          <h3 class="step-title">Detecta tus repetidas de forma automática.</h3>
+          <p class="step-desc">
+            Al marcar dos o más copias de una misma pieza, la app calcula automáticamente
+            tu excedente y lo añade a tu lista de intercambio. Sin configuraciones extra
+            ni pasos intermedios.
+          </p>
+          <div class="step-detail">
+            Marca lo que tienes; <strong>la app se encarga de separar tus repetidas al instante.</strong>
+          </div>
+        </div>
+
+        <div class="feature-step" data-state="state-perfil">
+          <div class="step-number">05 — Perfil público</div>
+          <h3 class="step-title">Tu perfil: tu carta de presentación ante la comunidad.</h3>
+          <p class="step-desc">
+            Crea un perfil público único para compartir tu progreso, tu lista de deseos
+            y tus repetidas con un solo enlace. La herramienta ideal para coordinar
+            intercambios en ferias, eventos presenciales o grupos de WhatsApp.
+          </p>
+          <div class="step-detail">
+            Privacidad a tu medida: decide al instante si los demás pueden ver
+            tu progreso, tus intercambios o tu lista de deseos.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sticky phone (right) -->
+      <div class="features-phone-col">
+        <div class="feature-phone">
+
+          <!-- State 1: Catálogo (screenshot real) -->
+          <div class="phone-state active" id="state-catalogo">
+            <img src="images/screenshot-01.png" alt="Pantalla de Explorar" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+          </div>
+
+          <!-- State 2: Álbum de stickers -->
+          <div class="phone-state" id="state-stickers">
+            <img src="images/screenshot-02.png" alt="Pantalla de Álbum de Stickers" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+          </div>
+
+          <!-- State 3: Progreso -->
+          <div class="phone-state" id="state-progreso">
+            <img src="images/screenshot-03.png" alt="Pantalla de Progreso" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+          </div>
+
+          <!-- State 4: Repetidos/Cambios -->
+          <div class="phone-state" id="state-cambios">
+            <img src="images/screenshot-04.png" alt="Pantalla de Cambios" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+          </div>
+
+          <!-- State 5: Perfil público -->
+          <div class="phone-state" id="state-perfil">
+            <img src="images/screenshot-05.png" alt="Pantalla de Perfil Público" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section class="community-section" id="comunidad">
+    <div class="community-inner-full">
+      <div class="community-acts reveal">
+        <div class="ca">
+          <div class="ca-num">01</div>
+          <p class="ca-text">Tienes un montón de figuras o stickers repetidos y no sabes a quién ofrecérselos.</p>
+        </div>
+        <div class="ca-arrow">→</div>
+        <div class="ca">
+          <div class="ca-num">02</div>
+          <p class="ca-text">Otro coleccionista lleva meses buscando exactamente esas mismas piezas.</p>
+        </div>
+        <div class="ca-arrow">→</div>
+        <div class="ca ca-highlight">
+          <div class="ca-num">03</div>
+          <p class="ca-text">Collekta conecta a ambos al instante — ya sea en una feria, un grupo de WhatsApp o redes sociales.</p>
+        </div>
+      </div>
+      <p class="community-footnote reveal">
+        Tu perfil muestra tus repetidas y tus faltantes al mismo tiempo.
+        La conversación empieza sola.
+      </p>
+    </div>
+  </section>
+
+  <!-- PRO -->
+  <section class="pro-section" id="pro">
+    <div class="pro-section-blob"></div>
+    <div class="pro-inner">
+
+      <div class="pro-header">
+        <div class="pro-kicker">⭐ Collekta Pro</div>
+        <h2 class="section-title reveal">Un solo pago.<br>Para siempre.</h2>
+        <p style="color:var(--t2);font-size:1rem;max-width:500px;margin:0 auto;line-height:1.78;" class="reveal">
+          Sin suscripciones ni mensualidades recurrentes. Un único pago para desbloquear
+          la experiencia completa diseñada para los coleccionistas más dedicados.
+        </p>
+      </div>
+
+      <div class="pro-grid">
+
+        <!-- Pro card -->
+        <div class="pro-card-wrapper reveal">
+          <div class="pro-card">
+            <span class="material-symbols-outlined pro-card-crown">workspace_premium</span>
+            <div class="pro-card-title">Collekta Pro</div>
+            <div class="pro-card-tagline">Acceso completo. Pago único. Sin límites.</div>
+
+            <div class="pro-price-block">
+              <div class="pro-price-model">Pago único</div>
+              <div class="pro-price-note">El precio se muestra dentro de la app<br>según tu país y moneda local.</div>
+              <div class="pro-price-highlight">✓ Sin mensualidades, nunca</div>
+            </div>
+
+            <a href="https://play.google.com/store/apps/details?id=com.danchez.collecta.app" class="pro-cta-btn" target="_blank" rel="noopener">
+              Obtener Collekta Pro
+            </a>
+          </div>
+        </div>
+
+        <!-- Pro features list -->
+        <div class="pro-features reveal">
+          <h3>Todo lo que desbloqueas:</h3>
+
+          <div class="pro-feature-item">
+            <div class="pfi-icon">⭐</div>
+            <div class="pfi-text">
+              <h4>Lista de deseos ilimitada</h4>
+              <p>Prioriza tus búsquedas y comparte tus faltantes directamente con otros coleccionistas en eventos y grupos.</p>
+            </div>
+          </div>
+
+          <div class="pro-feature-item">
+            <div class="pfi-icon">🚫</div>
+            <div class="pfi-text">
+              <h4>Sin anuncios</h4>
+              <p>Disfruta de una interfaz limpia, rápida y sin interrupciones para que te enfoques únicamente en tus colecciones.</p>
+            </div>
+          </div>
+
+          <div class="pro-feature-item">
+            <div class="pfi-icon">📁</div>
+            <div class="pfi-text">
+              <h4>Colecciones personalizadas ilimitadas</h4>
+              <p>Crea y organiza tus propios catálogos sin restricciones, ideal para colecciones locales o especiales que no están en el catálogo oficial.</p>
+            </div>
+          </div>
+
+          <div class="pro-feature-item">
+            <div class="pfi-icon">🏅</div>
+            <div class="pfi-text">
+              <h4>Insignia Pro en tu perfil</h4>
+              <p>Un distintivo exclusivo en tu perfil público que te destaca como un miembro clave de la comunidad.</p>
+            </div>
+          </div>
+
+          <div class="pro-feature-item">
+            <div class="pfi-icon">🔮</div>
+            <div class="pfi-text">
+              <h4>Acceso anticipado a nuevas funciones</h4>
+              <p>Sé el primero en probar y disfrutar de las nuevas herramientas y actualizaciones que añadimos continuamente.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- CTA -->
   <section class="cta-section" id="descarga">
-    <div class="blob blob-c1"></div>
     <div class="cta-inner">
-      <h2 class="section-title reveal">Descárgala gratis.</h2>
+      <h2 class="section-title reveal">Descárgala.<br>Es gratis.</h2>
       <p class="section-desc reveal">
-        Disponible para Android. iOS próximamente.
-        Empieza a coleccionar de verdad.
+        Disponible ahora para Android y próximamente en iOS.
+        Lleva tu pasión al siguiente nivel y completa tus colecciones sin complicaciones.
       </p>
-      <div class="cta-buttons reveal">
-        <a href="#" class="btn-store btn-play">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-          </svg>
-          <span class="btn-store-label">
-            <span class="small">Disponible en</span>
-            <span class="big">Google Play</span>
-          </span>
-        </a>
-        <a href="#" class="btn-store btn-apple">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-          </svg>
-          <span class="btn-store-label">
-            <span class="small">Próximamente en</span>
-            <span class="big">App Store</span>
-          </span>
-        </a>
-      </div>
+      <div class="cta-buttons store-buttons reveal"></div>
     </div>
   </section>
 
@@ -1124,9 +1575,10 @@
     <div class="footer-inner">
       <div>
         <div class="footer-brand">
-          <img src="icono_collecta.png" alt="Collekta" />
+          <img src="images/icono_collecta.png" alt="Collekta" />
           Collekta
         </div>
+        <div class="footer-slogan">Tu pasión organizada.</div>
         <div class="footer-copy">© 2026 Collekta. Todos los derechos reservados.</div>
       </div>
       <nav class="footer-links" aria-label="Legal">
@@ -1137,19 +1589,81 @@
     </div>
   </footer>
 
+  <!-- Store buttons template -->
+  <template id="store-btns">
+    <a href="https://play.google.com/store/apps/details?id=com.danchez.collecta.app" class="btn-store btn-play" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#4285F4" d="M44 480V32L305 256Z"/>
+        <path fill="#34A853" d="M44 32L305 256 391 172 92 5Z"/>
+        <path fill="#FBBC05" d="M305 256L391 172 469 215 469 297 391 340Z"/>
+        <path fill="#EA4335" d="M44 480L305 256 391 340 92 507Z"/>
+      </svg>
+      <span class="btn-store-label">
+        <span class="small">Disponible en</span>
+        <span class="big">Google Play</span>
+      </span>
+    </a>
+    <a href="#" class="btn-store btn-apple">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+      </svg>
+      <span class="btn-store-label">
+        <span class="small">Próximamente en</span>
+        <span class="big">App Store</span>
+      </span>
+    </a>
+  </template>
+
   <script>
-    // Scroll reveal — only runs when reduced-motion is not preferred
+    // ── Store buttons (single source of truth) ──
+    const storeTmpl = document.getElementById('store-btns');
+    document.querySelectorAll('.store-buttons').forEach(el => {
+      el.appendChild(storeTmpl.content.cloneNode(true));
+    });
+
+    // ── Sticky feature phone — scroll-based (closest to viewport center wins) ──
+    const steps  = document.querySelectorAll('.feature-step[data-state]');
+    const states = document.querySelectorAll('.phone-state');
+    let lastActive = null;
+
+    function activateState(stateId) {
+      states.forEach(s => s.classList.toggle('active', s.id === stateId));
+    }
+
+    function syncFeature() {
+      const mid = window.innerHeight / 2;
+      let closest = null, minDist = Infinity;
+
+      steps.forEach(step => {
+        const r = step.getBoundingClientRect();
+        const dist = Math.abs((r.top + r.height / 2) - mid);
+        if (dist < minDist) { minDist = dist; closest = step; }
+      });
+
+      if (closest && closest !== lastActive) {
+        steps.forEach(s => s.classList.toggle('active', s === closest));
+        activateState(closest.dataset.state);
+        lastActive = closest;
+      }
+    }
+
+    if (steps.length && window.matchMedia('(min-width: 960px)').matches) {
+      window.addEventListener('scroll', syncFeature, { passive: true });
+      syncFeature();
+    }
+
+    // ── Scroll reveal ──
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const observer = new IntersectionObserver((entries) => {
+      const revealObs = new IntersectionObserver((entries) => {
         entries.forEach((entry, i) => {
           if (entry.isIntersecting) {
-            setTimeout(() => entry.target.classList.add('visible'), i * 80);
-            observer.unobserve(entry.target);
+            setTimeout(() => entry.target.classList.add('visible'), i * 90);
+            revealObs.unobserve(entry.target);
           }
         });
       }, { threshold: 0.1 });
 
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
     }
   </script>
 </body>

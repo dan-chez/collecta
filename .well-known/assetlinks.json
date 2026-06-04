@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.danchez.collecta.app",
+      "sha256_cert_fingerprints": [
+        "6A:BB:9C:45:9E:A6:90:80:3E:D2:67:D8:F2:33:B6:B6:3D:82:F3:32:DE:1C:D8:9B:A7:6F:AA:13:A7:56:E3:E7"
+      ]
+    }
+  }
+]
