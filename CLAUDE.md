@@ -27,6 +27,35 @@ This deploys to `https://cromapp-100b8.web.app`. No build step — files are ser
 | `app-ads.txt` | AdMob app-ads verification |
 | `icono_collecta.png` | App icon used in nav, hero, and footer |
 | `screenshot.png` | App screenshot shown inside phone mockup |
+| `.well-known/assetlinks.json` | Android App Links verification |
+| `.well-known/apple-app-site-association` | iOS Universal Links verification |
+
+## Este dominio verifica los deep links de la app
+
+Los dos archivos de `.well-known/` son lo que hace que `https://collekta.app/u/<usuario>`
+abra la app en vez del navegador. No son documentación: si se rompen, el link se
+degrada a Safari/Chrome **sin error**.
+
+Dos trampas propias de Firebase Hosting:
+
+- **Si el repo no trae un `apple-app-site-association`, Firebase sirve uno propio**
+  — y el que sirve es `{"applinks":{"apps":[],"details":[]}}`, que no significa
+  "falta configurar" sino "ningún app maneja este dominio". O sea que la ruta
+  devuelve 200 y parece sana mientras los universal links están apagados. El
+  archivo del repo lo reemplaza; borrarlo no deja el path vacío, lo devuelve a esa
+  versión que apaga la feature.
+- **Sin extensión, Firebase lo serviría como `octet-stream` y Apple lo rechaza.**
+  De ahí la entrada en `headers` de `firebase.json` que fuerza
+  `Content-Type: application/json`. Es la misma razón por la que `assetlinks.json`
+  tiene la suya.
+
+Los paths declarados (`/u/*`, `/users/*`) tienen que seguir a
+`allowedDeepLinkPrefixes` en `cromapp/lib/config/router/deep_links.dart`. Agregar
+una ruta linkeable nueva en la app y no acá la deja abriendo el navegador.
+
+Apple cachea el AASA en su CDN, así que un cambio acá no se ve al instante en
+dispositivo. Para saltarse la caché durante una prueba, el entitlement admite
+`applinks:collekta.app?mode=developer`.
 
 ## Design system
 

@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["6QDBHZ8TFZ.com.danchez.collecta.app"],
+        "components": [
+          { "/": "/u/*", "comment": "Shared profile links (AppConstants.baseProfileUrl)" },
+          { "/": "/users/*", "comment": "Alternate profile path the router also accepts" }
+        ]
+      }
+    ]
+  }
+}
