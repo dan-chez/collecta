@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atribuciones y marcas de terceros — Collekta</title>
+  <link rel="icon" type="image/png" href="images/icono_collecta_v2.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(212,168,67,.35); border-radius: 2px; }
+
+    body {
+      background-color: #111111;
+      color: #F0EDE8;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      line-height: 1.7;
+      padding: 0 0 80px;
+    }
+
+    .hero {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .hero .meta {
+      color: rgba(240,237,232,0.40);
+      font-size: 0.85rem;
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+      margin-top: 6px;
+      background: #1E1E1E;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 8px;
+      padding: 4px;
+    }
+
+    .lang-toggle button {
+      background: none;
+      border: none;
+      color: rgba(240,237,232,0.40);
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 6px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: #D4A843;
+      color: #111111;
+    }
+
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .section:last-child { border-bottom: none; }
+
+    .section-number {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #D4A843;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #F0EDE8;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: rgba(240,237,232,0.68);
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    ul li {
+      color: rgba(240,237,232,0.68);
+      font-size: 0.95rem;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #D4A843;
+    }
+
+    strong { color: #F0EDE8; font-weight: 600; }
+
+    a { color: #D4A843; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .callout {
+      background: #1E1E1E;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-left: 2px solid #D4A843;
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-top: 16px;
+    }
+
+    .callout p { margin-bottom: 0; }
+
+    .contact-box {
+      background: #1E1E1E;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 16px;
+    }
+
+    .contact-box span {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #D4A843;
+    }
+
+    .legal-footer {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 24px 0;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .legal-footer a { font-size: 0.85rem; }
+
+    @media (max-width: 480px) {
+      .hero {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .lang-toggle { align-self: flex-end; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── ESPAÑOL ─────────────────────────────────────────────────────────── -->
+  <div id="content-es">
+    <div class="hero">
+      <div>
+        <h1>Atribuciones y marcas de terceros</h1>
+        <p class="meta">Última actualización: 19 de septiembre de 2026 · Versión 1.0</p>
+      </div>
+      <div class="lang-toggle">
+        <button id="btn-es-es" class="active" onclick="setLang('es')">ES</button>
+        <button id="btn-en-es" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="section">
+        <div class="section-number">Sección 01</div>
+        <h2>De qué se trata esta página</h2>
+        <p>Collekta es una herramienta para que los coleccionistas lleven el control de lo que tienen, lo que les falta y lo que tienen repetido. Para que eso sirva de algo, el catálogo tiene que nombrar colecciones reales y mostrar imágenes que permitan reconocer cada pieza.</p>
+        <p><strong>Nada de ese material es nuestro y no pretendemos que lo sea.</strong> Esta página explica de quién es, por qué aparece en la App y cómo pedir que lo retiremos.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-number">Sección 02</div>
+        <h2>Marcas y nombres de terceros</h2>
+        <p>Los nombres de colecciones, marcas comerciales, logotipos y denominaciones de productos que aparecen en Collekta —entre otros, Panini, Chocolatina Jet, Kinder, Yogo Yogo, Paleta Drácula y cualquier otro presente en el catálogo— son <strong>propiedad de sus respectivos titulares</strong>.</p>
+        <p>Se emplean únicamente de forma descriptiva y referencial, para identificar de qué colección se trata. Es la única manera de que un usuario encuentre su álbum entre todos los demás.</p>
+        <div class="callout">
+          <p>Collekta <strong>no está patrocinada, avalada, afiliada ni asociada</strong> con ninguna de esas marcas ni con sus titulares. Ninguna mención en la App debe interpretarse como un respaldo oficial.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-number">Sección 03</div>
+        <h2>Imágenes del catálogo</h2>
+        <p>Las imágenes de figuras, láminas, stickers y demás piezas cumplen una función <strong>identificativa</strong>: permiten al usuario reconocer cuál pieza está marcando. No se venden, no se licencian y no se ofrecen como archivos descargables.</p>
+        <ul>
+          <li>Se publican en resolución reducida, suficiente para identificar la pieza y no para reproducirla.</li>
+          <li>No sustituyen ni compiten con el producto original ni con ningún material oficial.</li>
+          <li>Cuando conocemos el origen de una imagen, lo registramos y lo acreditamos.</li>
+          <li>Collekta <strong>no vende, no compra ni intermedia</strong> coleccionables, y no obtiene ingresos por la venta de estas imágenes.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-number">Sección 04</div>
+        <h2>Qué sí es de Collekta</h2>
+        <p>Son de nuestra titularidad la aplicación y su código, el diseño de las pantallas, la estructura y organización del catálogo, el nombre <strong>Collekta</strong> y su identidad visual.</p>
+        <p><strong>Sobre nuestra mascota y el icono de la App:</strong> son una ilustración original encargada por Collekta a una ilustradora profesional, cuyos derechos de uso nos pertenecen. <strong>No fueron generados con inteligencia artificial</strong>, ni total ni parcialmente. Existe el archivo vectorial de trabajo que lo respalda.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-number">Sección 05</div>
+        <h2>Aviso y retiro de contenido</h2>
+        <p>Si eres titular de una marca, de una imagen o de cualquier otro derecho y consideras que algo dentro de Collekta lo afecta, <strong>escríbenos y lo retiramos</strong>. No hace falta un requerimiento judicial ni un abogado de por medio.</p>
+        <p>Para que podamos actuar rápido, incluye en tu mensaje:</p>
+        <ul>
+          <li>Identificación del contenido: colección, pieza o pantalla donde aparece.</li>
+          <li>Qué derecho consideras afectado y sobre qué material.</li>
+          <li>Datos de contacto y, si actúas en representación del titular, una indicación de ello.</li>
+        </ul>
+        <div class="callout">
+          <p>Nos comprometemos a <strong>responder dentro de los 10 días hábiles</strong> siguientes a la recepción del mensaje, y a retirar o corregir el material señalado mientras se revisa la solicitud.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-number">Sección 06</div>
+        <h2>Buena fe</h2>
+        <p>Collekta nació del hobby de coleccionar y se construyó con respeto por las marcas que hicieron posibles esas colecciones. No hay intención de apropiarnos de material ajeno, de sugerir vínculos que no existen, ni de afectar la imagen o la reputación de ninguna empresa.</p>
+        <p>Si algo de lo que hacemos te parece que cruza una línea, preferimos enterarnos por correo y corregirlo. Esa puerta está abierta y se atiende.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-number">Sección 07</div>
+        <h2>Contacto</h2>
+        <p>Para solicitudes de retiro, atribución o cualquier consulta sobre esta página:</p>
+        <div class="contact-box">
+          <span>danchezapps@gmail.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="legal-footer">
+      <a href="terminos-y-condiciones.html">Términos y Condiciones</a>
+      <a href="politica-de-privacidad.html">Política de Privacidad</a>
+      <a href="/">Inicio</a>
+    </div>
+  </div>
+
+  <!-- ─── ENGLISH ───────────────────────────────────────────────────────────── -->
+  <div id="content-en" hidden>
+    <div class="hero">
+      <div>
+        <h1>Attributions and Third-Party Trademarks</h1>
+        <p class="meta">Last updated: September 19, 2026 · Version 1.0</p>
+      </div>
+      <div class="lang-toggle">
+        <button id="btn-es-en" onclick="setLang('es')">ES</button>
+        <button id="btn-en-en" class="active" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="section">
+        <div class="section-number">Section 01</div>
+        <h2>What This Page Is About</h2>
+        <p>Collekta is a tool for collectors to keep track of what they own, what they are missing and what they have duplicated. For that to be useful at all, the catalog has to name real collections and show images that let people recognize each piece.</p>
+        <p><strong>None of that material is ours, and we do not claim it is.</strong> This page explains who it belongs to, why it appears in the App, and how to ask us to take it down.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-number">Section 02</div>
+        <h2>Third-Party Trademarks</h2>
+        <p>Collection names, trademarks, logos and product names appearing in Collekta — including but not limited to Panini, Chocolatina Jet, Kinder, Yogo Yogo, Paleta Drácula and any other present in the catalog — are <strong>the property of their respective owners</strong>.</p>
+        <p>They are used descriptively and for reference only, to identify which collection is being shown. It is the only way for a user to find their album among all the others.</p>
+        <div class="callout">
+          <p>Collekta is <strong>not sponsored, endorsed, affiliated with or associated with</strong> any of those brands or their owners. No mention within the App should be read as an official endorsement.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-number">Section 03</div>
+        <h2>Catalog Images</h2>
+        <p>Images of figures, cards, stickers and other pieces serve an <strong>identifying</strong> purpose: they let users recognize which piece they are marking. They are not sold, not licensed and not offered as downloadable files.</p>
+        <ul>
+          <li>They are published at reduced resolution, enough to identify a piece and not to reproduce it.</li>
+          <li>They do not replace or compete with the original product or any official material.</li>
+          <li>Where we know an image's source, we record and credit it.</li>
+          <li>Collekta <strong>does not sell, buy or broker</strong> collectibles, and earns no revenue from the sale of these images.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-number">Section 04</div>
+        <h2>What Does Belong to Collekta</h2>
+        <p>We own the application and its code, the screen designs, the structure and organization of the catalog, the <strong>Collekta</strong> name and its visual identity.</p>
+        <p><strong>About our mascot and the App icon:</strong> they are an original illustration commissioned by Collekta from a professional illustrator, and the rights of use belong to us. They were <strong>not generated with artificial intelligence</strong>, in whole or in part. The working vector file backing this up exists.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-number">Section 05</div>
+        <h2>Notice and Takedown</h2>
+        <p>If you own a trademark, an image or any other right and believe something inside Collekta affects it, <strong>write to us and we will take it down</strong>. No court order or lawyer is required.</p>
+        <p>So we can act quickly, please include in your message:</p>
+        <ul>
+          <li>Identification of the content: collection, piece or screen where it appears.</li>
+          <li>Which right you believe is affected, and over which material.</li>
+          <li>Contact details and, if you act on behalf of the owner, a statement to that effect.</li>
+        </ul>
+        <div class="callout">
+          <p>We commit to <strong>responding within 10 business days</strong> of receiving the message, and to removing or correcting the flagged material while the request is reviewed.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-number">Section 06</div>
+        <h2>Good Faith</h2>
+        <p>Collekta grew out of the hobby of collecting and was built with respect for the brands that made those collections possible. There is no intent to appropriate anyone else's material, to suggest ties that do not exist, or to harm any company's image or reputation.</p>
+        <p>If something we do seems to you to cross a line, we would rather hear about it by email and fix it. That door is open and it is attended.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-number">Section 07</div>
+        <h2>Contact</h2>
+        <p>For takedown requests, attribution matters or any question about this page:</p>
+        <div class="contact-box">
+          <span>danchezapps@gmail.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="legal-footer">
+      <a href="terminos-y-condiciones.html">Terms and Conditions</a>
+      <a href="politica-de-privacidad.html">Privacy Policy</a>
+      <a href="/">Home</a>
+    </div>
+  </div>
+
+  <script>
+    function setLang(lang) {
+      document.getElementById('content-es').hidden = lang !== 'es';
+      document.getElementById('content-en').hidden = lang !== 'en';
+      ['es', 'en'].forEach(function(l) {
+        var btnEs = document.getElementById('btn-' + l + '-es');
+        var btnEn = document.getElementById('btn-' + l + '-en');
+        if (btnEs) btnEs.classList.toggle('active', l === lang);
+        if (btnEn) btnEn.classList.toggle('active', l === lang);
+      });
+      localStorage.setItem('collekta-legal-lang', lang);
+    }
+    var saved = localStorage.getItem('collekta-legal-lang');
+    if (saved === 'en') setLang('en');
+  </script>
+
+</body>
+</html>

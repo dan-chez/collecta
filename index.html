@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Collekta — Sabe qué tienes, qué te falta y con quién puedes cambiar. La app para coleccionistas de LATAM." />
-  <link rel="icon" type="image/png" href="images/icono_collecta.png" />
+  <link rel="icon" type="image/png" href="images/icono_collecta_v2.png" />
   <title>Collekta — La app para coleccionistas de LATAM</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1113,6 +1113,14 @@
       font-size: .78rem; color: var(--t3); margin-top: 4px;
     }
 
+    .footer-note {
+      font-size: .72rem; color: var(--t3);
+      margin-top: 14px; max-width: 420px; line-height: 1.6;
+    }
+
+    .footer-note a { color: var(--gold); opacity: .8; text-decoration: none; }
+    .footer-note a:hover { opacity: 1; text-decoration: underline; }
+
     .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
 
     .footer-links a {
@@ -1267,7 +1275,7 @@
   <!-- NAV -->
   <nav>
     <a href="/" class="nav-logo">
-      <img src="images/icono_collecta.png" alt="Collekta" />
+      <img src="images/icono_collecta_v2.png" alt="Collekta" />
       Collekta
     </a>
     <ul class="nav-links">
@@ -1645,11 +1653,16 @@
     <div class="footer-inner">
       <div>
         <a href="/" class="footer-brand">
-          <img src="images/icono_collecta.png" alt="Collekta" />
+          <img src="images/icono_collecta_v2.png" alt="Collekta" />
           Collekta
         </a>
         <div class="footer-slogan">Tu pasión organizada.</div>
         <div class="footer-copy">© 2026 Collekta. Todos los derechos reservados.</div>
+        <div class="footer-note">
+          Mascota e icono: ilustración original encargada por Collekta. Sin IA generativa.<br>
+          Las marcas y coleccionables del catálogo pertenecen a sus titulares —
+          <a href="atribuciones.html">ver atribuciones</a>.
+        </div>
       </div>
       <div class="footer-menu">
         <button class="footer-menu-toggle" aria-label="Abrir menú legal" aria-expanded="false">
@@ -1658,6 +1671,7 @@
         <nav class="footer-links hidden" aria-label="Legal">
           <a href="terminos-y-condiciones.html">Términos y Condiciones</a>
           <a href="politica-de-privacidad.html">Política de Privacidad</a>
+          <a href="atribuciones.html">Atribuciones</a>
           <a href="eliminar-cuenta.html">Eliminar cuenta</a>
         </nav>
       </div>

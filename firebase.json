@@ -5,7 +5,12 @@
       "firebase.json",
       ".firebaserc",
       ".git",
-      ".gitignore"
+      ".gitignore",
+      ".claude",
+      ".firebase",
+      "CLAUDE.md",
+      "PRODUCT.md",
+      "**/*.zip"
     ],
     "cleanUrls": true,
     "trailingSlash": false,
